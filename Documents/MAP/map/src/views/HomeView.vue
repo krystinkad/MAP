@@ -1,5 +1,4 @@
 <script setup>
-import headerBar from "@/components/header.vue";
 import footerBar from "@/components/footer.vue";
 </script>
 

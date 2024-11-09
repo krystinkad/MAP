@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from "vue-router";
   <div class="footerWrap">
     <div class="contactsWrap">
       <span class="contacts">
-        <h2>Sociální sítě</h2>
+        <h3>Sociální sítě</h3>
         <span
           ><i class="fa-brands fa-instagram"></i>
           <p>ldt_korinek</p></span
@@ -60,7 +60,7 @@ import { RouterLink, RouterView } from "vue-router";
       gap: 20px;
       padding-right: 190px;
       padding-top: 30px;
-      h2 {
+      h3 {
         font-size: 1.8em;
       }
       span {
