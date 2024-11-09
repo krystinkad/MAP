@@ -46,7 +46,7 @@ import footerBar from "@/components/footer.vue";
         hlášení
       </p>
     </div>
-    <div class="separator">
+    <div class="separatorLine">
       <span></span>
     </div>
 
@@ -77,9 +77,9 @@ main.homePage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
     color: colors.$clr_white;
-    padding: 50px;
+    padding:50px;
+    gap:20px;
     h2 {
       font-size: 1.8em;
     }
@@ -87,7 +87,7 @@ main.homePage {
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding-bottom:20px;
+      gap:20px;
       .countdownPart {
         display: flex;
         flex-direction: column;
@@ -117,12 +117,12 @@ main.homePage {
       color: colors.$green_dark;
     }
   }
-  .separator {
+  .separatorLine {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: "Quicksand", sans-serif;
-    padding: 40px;
+    padding: 60px;
     span {
       height: 3px;
       width: 40%;
