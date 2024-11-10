@@ -5,10 +5,11 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <div class="wrap">
     <div class="headerContainer">
-      <img src="/img/header_text.png" alt="Kořínek" />
+       <RouterLink class="link " to="/">
+      <img src="/img/header_text.png" alt="Kořínek" /></RouterLink>
       <nav>
-        <RouterLink class="link" to="/">O nás</RouterLink>
-        <RouterLink class="link" to="/about">Táborobvý zpravodaj</RouterLink>
+        <RouterLink class="link" to="/about">O nás</RouterLink>
+        <RouterLink class="link" to="/news">Táborobvý zpravodaj</RouterLink>
         <RouterLink class="link" to="/download">Ke stažení</RouterLink>
         <RouterLink class="link" to="/contacts">Kontakty</RouterLink>
         <RouterLink class="link" to="/messages">Táborobvá pošta</RouterLink>
@@ -36,7 +37,8 @@ import { RouterLink, RouterView } from "vue-router";
   img {
     width: 150px;
     padding: 35px;
-    z-index: 4;
+    z-index: 8;
+    position: relative;
   }
   nav {
     padding: 20px;
@@ -45,7 +47,7 @@ import { RouterLink, RouterView } from "vue-router";
       padding: 20px;
       color: colors.$green_dark;
       text-decoration: none;
-      z-index: 5;
+      z-index: 7;
     }
   }
 }
@@ -54,7 +56,7 @@ img.wave{
   top:45px;
   width: 100%;
   padding: 0;
-  z-index: 1;
+  z-index: 0;
   rotate: 0deg;
 }}
 </style>
