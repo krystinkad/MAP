@@ -18,7 +18,7 @@ import footerBar from '@/components/footer.vue'
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  max-height: 100vh;
 }
 headerBar{
   z-index: 10;
