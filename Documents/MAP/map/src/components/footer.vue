@@ -33,7 +33,7 @@ import { RouterLink, RouterView } from "vue-router";
     <img class="footer_image" src="/img/korinek_wave_heart.png" alt="" />
   </div>
 </template>
-<style lang="scss">
+<style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/fontawesome.scss";
 @use "@/assets/fonts.scss";

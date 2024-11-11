@@ -9,8 +9,8 @@ import { RouterLink, RouterView } from "vue-router";
       <img src="/img/header_text.png" alt="Kořínek" /></RouterLink>
       <nav>
         <RouterLink class="link" to="/about">O nás</RouterLink>
-        <RouterLink class="link" to="/news">Táborobvý zpravodaj</RouterLink>
-        <RouterLink class="link" to="/download">Ke stažení</RouterLink>
+        <RouterLink class="link" to="/news">Táborový zpravodaj</RouterLink>
+        <RouterLink class="link" to="/downloads">Ke stažení</RouterLink>
         <RouterLink class="link" to="/contacts">Kontakty</RouterLink>
         <RouterLink class="link" to="/messages">Táborobvá pošta</RouterLink>
       </nav>
@@ -21,9 +21,11 @@ import { RouterLink, RouterView } from "vue-router";
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
 .wrap{
-  position: absolute;
+  position: relative;
   top:0;
   width: 100%;
+    z-index: 3;
+
 .headerContainer {
   width: 100%;
   height: 70px;
@@ -33,7 +35,6 @@ import { RouterLink, RouterView } from "vue-router";
   align-items: center;
   justify-content: space-between;
   background-color: colors.$clr_white;
-  z-index: 3;
   img {
     width: 150px;
     padding: 35px;

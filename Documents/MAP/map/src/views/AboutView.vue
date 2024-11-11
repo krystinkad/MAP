@@ -56,7 +56,7 @@ import footerBar from "@/components/footer.vue";
   <footerBar></footerBar>
 </template>
 
-<style scooped lang="scss">
+<style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 
 h2 {

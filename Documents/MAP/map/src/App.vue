@@ -12,12 +12,16 @@ import footerBar from '@/components/footer.vue'
   <RouterView />
 </template>
 
-<style>
+<style scoped lang="scss">
 
 .wraper{
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+headerBar{
+  z-index: 10;
 }
 
 
