@@ -36,7 +36,7 @@ h3 {
   padding: 25px 0 15px 0;
 }
 main {
-  height: 100%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -45,12 +45,11 @@ main {
   background-position: center;
   z-index: 0;
   padding: 0;
-  position: relative;
+  position:unset;
   .positions {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-content: center;
     .files {
       margin-top: 80px;
       padding: 30px;
@@ -86,7 +85,8 @@ main {
       img.image {
         position: absolute;
         bottom: 0;
-        height: 60vh;
+        max-height: 60vh;
+        max-width: 90vw;
         z-index: 6;
         justify-self: end;
         left:60px;
