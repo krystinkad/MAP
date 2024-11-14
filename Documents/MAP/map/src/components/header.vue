@@ -1,14 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+this.isVisible = false
 function dropdown() {
-  const headerContainer = document.querySelector(".headerContainer");
-  headerContainer.classList.toggle("visible");
+  this.isVisible = !this.isVisible;
+
 }
 </script>
 
 <template>
   <div class="wrap">
-    <div class="headerContainer">
+    <div :class="['headerContainer', { visible: isVisible }]">
       <RouterLink class="link" to="/">
         <img src="/img/header_text.png" alt="Kořínek"
       /></RouterLink>

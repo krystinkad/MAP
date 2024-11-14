@@ -72,6 +72,8 @@ import note from "@/components/note.vue";
 
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
+@use "@/assets/mixins.scss" as mixins;
+
 b {
   font-weight: 600;
 }
@@ -84,7 +86,7 @@ h3 {
   font-family: "Luckiest";
   color: colors.$green_primary;
   font-size: 2.8em;
-  padding: 25px 0 15px 0;
+  padding: 35px 0 25px 0;
 }
 main {
   //height: calc(100vh - 70px);
@@ -99,7 +101,7 @@ main {
   padding-bottom:60px;
   margin-bottom: -30px;
   h2 {
-    padding-top: 70px;
+    padding-top: 100px;
     font-size: 3em;
     color: colors.$green_dark;
   }
@@ -164,6 +166,9 @@ main {
       gap: 20px;
       width: 40%;
     }
+    @include mixins.responsive(tablet){
+      flex-direction: column;
+    }
   }
   section.vzkazy {
     padding: 70px;
@@ -171,6 +176,9 @@ main {
     gap: 30px;
     grid-template-columns: 1fr 1fr 1fr;
   }
+    @include mixins.responsive(1000px) {
+    grid-template-columns: 1fr 1fr;
+    }
 }
 footerBar {
   position: absolute;
