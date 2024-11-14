@@ -80,13 +80,12 @@ main.homePage {
     padding: 50px;
     gap: 20px;
     h2 {
-      font-size: 1.8em;
       text-align: center;
       @include mixins.responsive(tablet) {
-        font-size: 1.4em;
+        font-size: 2.3em;
       }
       @include mixins.responsive(mobile) {
-        font-size: 1em;
+        font-size: 1.8em;
         padding-top: 10px;
       }
     }

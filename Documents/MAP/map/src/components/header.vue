@@ -1,8 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-this.isVisible = false
+import { ref } from 'vue';
+
+const isVisible = ref(false);
 function dropdown() {
-  this.isVisible = !this.isVisible;
+  isVisible.value = !isVisible.value;
 
 }
 </script>

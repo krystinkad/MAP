@@ -159,15 +159,23 @@ main {
           }
         }
       }
+                @include mixins.responsive(tablet){
+            width: 80%;
+}
     }
     .dopisy {
       display: flex;
       flex-direction: column;
       gap: 20px;
       width: 40%;
+          @include mixins.responsive(tablet){
+            width: 80%;
+}
     }
     @include mixins.responsive(tablet){
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
   section.vzkazy {
