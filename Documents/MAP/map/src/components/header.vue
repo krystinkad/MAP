@@ -8,7 +8,7 @@ function dropdown() {
 
 <template>
   <div class="wrap">
-    <div class="headerContainer visible">
+    <div class="headerContainer">
       <RouterLink class="link" to="/">
         <img src="/img/header_text.png" alt="Kořínek"
       /></RouterLink>

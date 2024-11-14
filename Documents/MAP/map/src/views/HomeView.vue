@@ -1,6 +1,5 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
-
 import sponsors from "@/components/sponsors.vue";
 </script>
 
@@ -57,6 +56,8 @@ import sponsors from "@/components/sponsors.vue";
 </template>
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
+@use "@/assets/mixins.scss" as mixins;
+
 h2 {
   font-family: "Luckiest";
   font-size: 2.8em;
@@ -76,34 +77,74 @@ main.homePage {
     flex-direction: column;
     align-items: center;
     color: colors.$clr_white;
-    padding:50px;
-    gap:20px;
+    padding: 50px;
+    gap: 20px;
     h2 {
       font-size: 1.8em;
+      text-align: center;
+      @include mixins.responsive(tablet) {
+        font-size: 1.4em;
+      }
+      @include mixins.responsive(mobile) {
+        font-size: 1em;
+        padding-top: 10px;
+      }
     }
     .countdownCont {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap:20px;
+      gap: 20px;
+      padding: 20px 0 20px 0;
+      @include mixins.responsive(320px) {
+        flex-direction: column;
+        gap: 10px;
+      }
       .countdownPart {
         display: flex;
         flex-direction: column;
         align-items: center;
+
         :first-child {
           font-family: "Luckiest";
           font-size: 3.5em;
+
+          @include mixins.responsive(tablet) {
+            font-size: 3em;
+          }
+          @include mixins.responsive(mobile) {
+            font-size: 2em;
+          }
+          @include mixins.responsive(320px) {
+            font-size: 1.6em;
+          }
         }
         :nth-child(2) {
           font-family: "Quicksand", sans-serif;
           font-size: 1.2em;
           text-transform: uppercase;
+          @include mixins.responsive(mobile) {
+            font-size: 0.8em;
+          }
         }
       }
       .separator {
         font-family: "Luckiest";
         font-size: 1.8em;
+        @include mixins.responsive(tablet) {
+          font-size: 1.3em;
+        }
+        @include mixins.responsive(mobile) {
+          font-size: 0.8em;
+        }
+        @include mixins.responsive(320px) {
+          display: none;
+        }
       }
+    }
+    @include mixins.responsive(tablet) {
+      padding: 20px;
+      gap: 10px;
     }
   }
   .aktuality {
@@ -113,6 +154,13 @@ main.homePage {
     font-family: "Quicksand", sans-serif;
     h2 {
       color: colors.$green_dark;
+      @include mixins.responsive(tablet) {
+        font-size: 1.6em;
+      }
+      @include mixins.responsive(mobile) {
+        font-size: 1.3em;
+        padding-top: 10px;
+      }
     }
   }
   .separatorLine {
@@ -126,15 +174,6 @@ main.homePage {
       width: 40%;
       background-color: colors.$green_primary;
       align-self: center;
-    }
-  }
-  .sponsors {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: "Quicksand", sans-serif;
-    h2 {
-      color: colors.$green_dark;
     }
   }
 }

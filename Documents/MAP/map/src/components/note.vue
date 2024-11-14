@@ -10,11 +10,11 @@ import { RouterLink, RouterView } from "vue-router";
         <p>15.07.2024 16:04:43</p>
       </span>
       <p>
-        Moc děkujeme za opět krásně zorganizovaný tábor,každý rok jinak zaměřený
-        a vždy jedinečný.Strava,vedoucí a zázemí vynikající. Naši kluci se vrací
-        každý rok nadšeni. Držíme palce do dalších ročníků bohužel již bez
+        Moc děkujeme za opět krásně zorganizovaný tábor,každý rok jinakzaměřený
+        a vždy jedinečný.Strava,vedoucí a zázemí vynikající.Naši kluci se vrací
+        každý rok nadšeni.Držíme palce do dalších ročníků bohužel jižbez
         nás,kluci jsou již příští rok staří,ale mají na co
-        vzpomínat. Děkujeme Heřman Tomáš
+        vzpomínat.DěkujemeHeřman Tomáš
       </p>
     </article>
   </div>

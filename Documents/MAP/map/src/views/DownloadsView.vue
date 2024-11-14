@@ -27,6 +27,7 @@
 
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
+@use "@/assets/mixins.scss" as mixins;
 
 h2,
 h3 {
@@ -34,6 +35,14 @@ h3 {
   color: colors.$green_dark;
   font-size: 2.8em;
   padding: 25px 0 15px 0;
+      @include mixins.responsive(tablet) {
+      font-size: 2.2em;
+      text-align: center;
+    }
+    @include mixins.responsive(mobile) {
+      font-size: 1.6em;
+      padding-top: 10px;
+    }
 }
 main {
   height: calc(100vh - 70px);
@@ -45,7 +54,7 @@ main {
   background-position: center;
   z-index: 0;
   padding: 0;
-  position:unset;
+  position: unset;
   .positions {
     display: flex;
     flex-direction: row;
@@ -57,22 +66,25 @@ main {
       border-radius: 20px;
       border: colors.$green_primary 3px solid;
       width: 25%;
-      p{
+      p {
         font-size: 1.2em;
-        i{
-            color: colors.$green_primary;
-            font-size: 1.2em;
+        i {
+          color: colors.$green_primary;
+          font-size: 1.2em;
         }
+          @include mixins.responsive(tablet) {
+            text-align: center;
+}
       }
       .divider {
-        display:block;
+        display: block;
         height: 2px;
         width: 80%;
         background-color: colors.$green_primary;
-        margin:15px 0 15px 0;
+        margin: 15px 0 15px 0;
       }
-      .button{
-        font-family: 'Luckiest';
+      .button {
+        font-family: "Luckiest";
         color: colors.$clr_white;
         padding: 15px 20px 10px 20px;
         background-color: colors.$green_primary;
@@ -80,17 +92,41 @@ main {
         border-radius: 50px;
         width: fit-content;
       }
+      @include mixins.responsive(1000px) {
+        width: 50%;
+      }
+      @include mixins.responsive(tablet) {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
     }
     div {
       img.image {
         position: absolute;
         bottom: 0;
         max-height: 60vh;
-        max-width: 90vw;
+        max-width: 50vw;
         z-index: 6;
         justify-self: end;
-        left:60px;
+        left: 60px;
+        @include mixins.responsive(laptop) {
+          max-height: 50vh;
+          left: 30px;
+        }
+        @include mixins.responsive(tablet) {
+          max-height: 40vh;
+          left: 10px;
+        }
+        @include mixins.responsive(mobile) {
+          display: none;
+        }
       }
+    }
+    @include mixins.responsive(tablet) {
+      justify-content: center;
     }
   }
   img.wave {
