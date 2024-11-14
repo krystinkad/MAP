@@ -36,11 +36,11 @@ h3 {
   padding: 25px 0 15px 0;
 }
 main {
-  height: 90vh;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-image: url("/img/background.png");
+  background-image: url("/img/background2.png");
   background-size: cover;
   background-position: center;
   z-index: 0;

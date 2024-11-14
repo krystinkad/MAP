@@ -1,5 +1,7 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
+
+import sponsors from "@/components/sponsors.vue";
 </script>
 
 <template>
@@ -49,10 +51,7 @@ import footerBar from "@/components/footer.vue";
       <span></span>
     </div>
 
-    <div class="sponsors">
-      <h2>Podpořili nás</h2>
-      <p>tady budou loga sponzorů</p>
-    </div>
+    <sponsors></sponsors>
   </main>
   <footerBar class="bottom"></footerBar>
 </template>

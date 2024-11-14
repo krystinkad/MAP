@@ -1,5 +1,6 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
+import sponsors from "@/components/sponsors.vue";
 
 </script>
 
@@ -30,28 +31,13 @@ import footerBar from "@/components/footer.vue";
       <h2>Současnost</h2>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum sed
-        cupiditate, dolorem vel maiores, voluptatibus consectetur saepe dolores
-        omnis est, officiis voluptates! Excepturi ipsa dolores laudantium veniam
-        est dolorum odio. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Velit maxime dicta perferendis facere molestiae minus architecto
-        placeat consequuntur eos. Impedit natus error distinctio ab quia
-        commodi, quas voluptatum ducimus sapiente. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quibusdam, ea? Alias suscipit voluptatibus
-        quos cumque, animi excepturi accusamus, error eveniet adipisci libero
-        tempore hic eius? Molestias inventore odit consequuntur quos. Lorem,
-        ipsum dolor sit amet consectetur adipisicing elit. Vitae ipsa rem a
-        deserunt optio perspiciatis consequuntur explicabo iusto inventore
-        beatae amet nobis, atque modi quibusdam dolorum dolores aspernatur?
-        Cupiditate, ea.
+        
       </p>
     </div>
     <div class="separatorLine">
       <span></span>
     </div>
-    <div class="sponsors aboutUs">
-      <h2>Podpořili nás</h2>
-      <p>tady budou loga sponzorů</p>
-    </div>
+    <sponsors></sponsors>
   </div>
   <footerBar></footerBar>
 </template>
