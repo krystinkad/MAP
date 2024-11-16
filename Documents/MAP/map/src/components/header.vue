@@ -2,21 +2,21 @@
 import { RouterLink, RouterView } from "vue-router";
 import { ref } from 'vue';
 
-/* const isVisible = ref(false);
+const isVisible = ref(false);
 function dropdown() {
   isVisible.value = !isVisible.value;
-} */
+}
 </script>
 
 <template>
   <div class="wrap">
-    <div :class="['headerContainer', 'visible']">
-      <RouterLink class="link" to="/">
+    <div :class="['headerContainer', { visible: isVisible } ]">
+      <RouterLink class="link" to="/" @click="dropdown()">
         <img src="/img/header_text.png" alt="Kořínek"
       ></RouterLink>
-      <i class="fa-solid fa-bars" @click="dropdown"></i>
+      <i class="fa-solid fa-bars" @click="dropdown()"></i>
 
-      <nav>
+      <nav @click="dropdown()">
         <RouterLink class="link" to="/about">O nás</RouterLink>
         <RouterLink class="link" to="/news">Táborový zpravodaj</RouterLink>
         <RouterLink class="link" to="/downloads">Ke stažení</RouterLink>
