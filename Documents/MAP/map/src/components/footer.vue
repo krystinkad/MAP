@@ -33,10 +33,11 @@ import { RouterLink, RouterView } from "vue-router";
     <img class="footer_image" src="/img/korinek_wave_heart.png" alt="" />
   </div>
 </template>
-<style lang="scss">
+<style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/fontawesome.scss";
 @use "@/assets/fonts.scss";
+@use "@/assets/mixins.scss" as mixins;
 
 .footerWrap {
   width: 100%;
@@ -62,6 +63,12 @@ import { RouterLink, RouterView } from "vue-router";
       padding-top: 30px;
       h3 {
         font-size: 1.8em;
+        @include mixins.responsive(laptop) {
+          font-size: 1.5em;
+        }
+        @include mixins.responsive(tablet) {
+          font-size: 1em;
+        }
       }
       span {
         font-family: "Quicksand", sans-serif;
@@ -70,7 +77,34 @@ import { RouterLink, RouterView } from "vue-router";
         align-items: center;
         gap: 15px;
         font-size: 1.2em;
+        @include mixins.responsive(laptop) {
+          font-size: 1em;
+        }
+        @include mixins.responsive(900px) {
+          font-size: 0.8em;
+          gap:10px;
+        }
       }
+      @include mixins.responsive(1300px) {
+        padding-right: 150px;
+      }
+      @include mixins.responsive(laptop) {
+        padding-right: 100px;
+      }
+      @include mixins.responsive(tablet) {
+        padding-top: 50px;
+        gap:10px;
+      }
+      @include mixins.responsive(555px) {
+        padding-right: 50px;
+      }
+      @include mixins.responsive(mobile) {
+        padding-right: 0;
+        align-items: center;
+      }
+    }
+    @include mixins.responsive(mobile) {
+        align-items: center;
     }
   }
   .copy {
@@ -86,7 +120,33 @@ import { RouterLink, RouterView } from "vue-router";
     .copysign {
       font-size: 1.4em;
       font-weight: 300;
+      @include mixins.responsive(laptop) {
+        font-size: 1.2em;
+      }
     }
+    @include mixins.responsive(900px) {
+        justify-content: end;
+        width: 80%;
+        align-self: flex-end;
+        margin-right: 20px;
+    }
+    @include mixins.responsive(tablet){
+      font-size: 0.9em;
+      margin-right: 40px;
+    }
+    @include mixins.responsive(555px){
+      font-size: 0.7em;
+      margin-right: 40px;
+    }
+    @include mixins.responsive(555px){
+      justify-content: center;
+    }
+  }
+  @include mixins.responsive(tablet) {
+    height: 200px;
+  }
+  @include mixins.responsive(mobile) {
+    height: 190px;
   }
 }
 img.wave {
@@ -104,6 +164,25 @@ img.footer_image {
   height: 350px;
   z-index: 4;
   padding-left: 80px;
+  @include mixins.responsive(laptop) {
+    height: 300px;
+    padding-left: 50px;
+  }
+  @include mixins.responsive(900px) {
+    height: 250px;
+    padding-left: 30px;
+  }
+  @include mixins.responsive(tablet) {
+    height: 200px;
+    padding-left: 25px;
+  }
+  @include mixins.responsive(555px) {
+    height: 150px;
+    padding-left: 20px;
+  }
+  @include mixins.responsive(mobile) {
+    display: none;
+  }
 }
 </style>
 

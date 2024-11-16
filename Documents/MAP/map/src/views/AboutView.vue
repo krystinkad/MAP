@@ -1,5 +1,6 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
+import sponsors from "@/components/sponsors.vue";
 
 </script>
 
@@ -30,40 +31,35 @@ import footerBar from "@/components/footer.vue";
       <h2>Současnost</h2>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum sed
-        cupiditate, dolorem vel maiores, voluptatibus consectetur saepe dolores
-        omnis est, officiis voluptates! Excepturi ipsa dolores laudantium veniam
-        est dolorum odio. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Velit maxime dicta perferendis facere molestiae minus architecto
-        placeat consequuntur eos. Impedit natus error distinctio ab quia
-        commodi, quas voluptatum ducimus sapiente. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quibusdam, ea? Alias suscipit voluptatibus
-        quos cumque, animi excepturi accusamus, error eveniet adipisci libero
-        tempore hic eius? Molestias inventore odit consequuntur quos. Lorem,
-        ipsum dolor sit amet consectetur adipisicing elit. Vitae ipsa rem a
-        deserunt optio perspiciatis consequuntur explicabo iusto inventore
-        beatae amet nobis, atque modi quibusdam dolorum dolores aspernatur?
-        Cupiditate, ea.
+        
       </p>
     </div>
     <div class="separatorLine">
       <span></span>
     </div>
-    <div class="sponsors aboutUs">
-      <h2>Podpořili nás</h2>
-      <p>tady budou loga sponzorů</p>
-    </div>
+    <sponsors></sponsors>
   </div>
   <footerBar></footerBar>
 </template>
 
-<style scooped lang="scss">
+<style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
+@use "@/assets/mixins.scss" as mixins;
 
-h2 {
-  font-family: "Luckiest";
-  font-size: 2.8em;
-  padding: 25px;
-}
+
+  h2 {
+    font-family: "Luckiest";
+    font-size: 2.8em;
+    padding: 25px;
+    color: colors.$green_dark;
+    @include mixins.responsive(tablet) {
+        font-size: 2.2em;
+      }
+      @include mixins.responsive(mobile) {
+        font-size: 1.6em;
+        padding-top: 10px;
+      }
+  }
 .about {
   padding-top: 60px ;
   min-height: 100vh;
