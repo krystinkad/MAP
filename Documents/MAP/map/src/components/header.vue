@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const isVisible = ref(false);
 function dropdown() {
@@ -10,10 +10,10 @@ function dropdown() {
 
 <template>
   <div class="wrap">
-    <div :class="['headerContainer', { visible: isVisible } ]">
+    <div :class="['headerContainer', { visible: isVisible }]">
       <RouterLink class="link" to="/" @click="dropdown()">
         <img src="/img/header_text.png" alt="Kořínek"
-      ></RouterLink>
+      /></RouterLink>
       <i class="fa-solid fa-bars" @click="dropdown()"></i>
 
       <nav @click="dropdown()">
@@ -38,7 +38,6 @@ function dropdown() {
   z-index: 3;
 
   .headerContainer {
-    //transition: ease 0.1s;
     width: 100%;
     height: 70px;
     font-family: "Luckiest";
@@ -49,7 +48,7 @@ function dropdown() {
     background-color: colors.$clr_white;
     img {
       width: 150px;
-      padding: 30px  20px 0 20px;
+      padding: 30px 20px 0 20px;
       z-index: 8;
       position: relative;
       @include mixins.responsive(laptop) {
@@ -66,17 +65,20 @@ function dropdown() {
 
       @include mixins.responsive(tablet) {
         display: block;
-        padding: 20px;
+        padding: 0 20px 0 20px;
       }
     }
     nav {
-      padding: 30px  20px 0 20px;
+      padding: 30px 20px 0 20px;
+      background-color: colors.$clr_white;
       .link {
         font-size: 1.15em;
         padding: 20px;
         color: colors.$green_dark;
         text-decoration: none;
         z-index: 7;
+        text-align: center;
+
         @include mixins.responsive(laptop) {
           font-size: 1em;
           padding: 15px;
@@ -97,40 +99,40 @@ function dropdown() {
   }
 
   div.visible {
-    //transition: ease 0.1s;
     @include mixins.responsive(tablet) {
+      position: absolute;
       height: 100vh;
       flex-direction: column;
       align-items: center;
+      justify-content: start;
+      width:100%;
     }
-
     nav {
       @include mixins.responsive(tablet) {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        //height: 100%;
         font-size: 1.5em;
         align-items: center;
       }
       @include mixins.responsive(mobile) {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        //height: 100%;
         font-size: 1.2em;
         align-items: center;
       }
       @include mixins.responsive(tablet) {
-        height: 100vh;
         flex-direction: column;
         align-items: center;
       }
     }
     .link {
-              @include mixins.responsive(tablet) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-}
+      @include mixins.responsive(tablet) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
       img {
         @include mixins.responsive(tablet) {

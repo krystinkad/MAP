@@ -46,9 +46,12 @@ import { RouterLink, RouterView } from "vue-router";
   position: relative;
   background-image: url("@/assets/footer.svg");
   z-index: 3;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  bottom: 0px;
+  margin: 0;
 
   .contactsWrap {
     display: flex;
@@ -58,15 +61,19 @@ import { RouterLink, RouterView } from "vue-router";
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 20px;
+      gap: 10px;
       padding-right: 190px;
       padding-top: 30px;
+      padding-bottom: 30px;
       h3 {
         font-size: 1.8em;
         @include mixins.responsive(laptop) {
+          padding-top: 30px;
+
           font-size: 1.5em;
         }
         @include mixins.responsive(tablet) {
+          padding-top: 50px;
           font-size: 1em;
         }
       }
@@ -82,7 +89,7 @@ import { RouterLink, RouterView } from "vue-router";
         }
         @include mixins.responsive(900px) {
           font-size: 0.8em;
-          gap:10px;
+          gap: 10px;
         }
       }
       @include mixins.responsive(1300px) {
@@ -92,10 +99,12 @@ import { RouterLink, RouterView } from "vue-router";
         padding-right: 100px;
       }
       @include mixins.responsive(tablet) {
-        padding-top: 50px;
-        gap:10px;
+        padding-top: 10px;
+        gap: 5px;
       }
       @include mixins.responsive(555px) {
+        padding-top: 10px;
+        padding-bottom: 40px;
         padding-right: 50px;
       }
       @include mixins.responsive(mobile) {
@@ -104,7 +113,7 @@ import { RouterLink, RouterView } from "vue-router";
       }
     }
     @include mixins.responsive(mobile) {
-        align-items: center;
+      align-items: center;
     }
   }
   .copy {
@@ -122,31 +131,40 @@ import { RouterLink, RouterView } from "vue-router";
       font-weight: 300;
       @include mixins.responsive(laptop) {
         font-size: 1.2em;
+        align-items: flex-end;
       }
     }
     @include mixins.responsive(900px) {
-        justify-content: end;
-        width: 80%;
-        align-self: flex-end;
-        margin-right: 20px;
+      justify-content: end;
+      width: 100%;
+      align-self: flex-end;
+      margin: 0;
+
+      margin-right: 20px;
     }
-    @include mixins.responsive(tablet){
-      font-size: 0.9em;
-      margin-right: 40px;
+    @include mixins.responsive(tablet) {
+      font-size: 0.8em;
+      margin-right: 60px;
     }
-    @include mixins.responsive(555px){
-      font-size: 0.7em;
-      margin-right: 40px;
-    }
-    @include mixins.responsive(555px){
+    @include mixins.responsive(555px) {
+      font-size: 0.6em;
+      margin: 0px;
       justify-content: center;
     }
+  }
+  @include mixins.responsive(555px) {
+    justify-content: end;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    align-self: center;
   }
   @include mixins.responsive(tablet) {
     height: 200px;
   }
   @include mixins.responsive(mobile) {
     height: 190px;
+    bottom: 0;
   }
 }
 img.wave {

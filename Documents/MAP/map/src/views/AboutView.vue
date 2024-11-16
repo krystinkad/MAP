@@ -46,20 +46,6 @@ import sponsors from "@/components/sponsors.vue";
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
 
-
-  h2 {
-    font-family: "Luckiest";
-    font-size: 2.8em;
-    padding: 25px;
-    color: colors.$green_dark;
-    @include mixins.responsive(tablet) {
-        font-size: 2.2em;
-      }
-      @include mixins.responsive(mobile) {
-        font-size: 1.6em;
-        padding-top: 10px;
-      }
-  }
 .about {
   padding-top: 60px ;
   min-height: 100vh;
@@ -92,6 +78,9 @@ import sponsors from "@/components/sponsors.vue";
       background-color: colors.$green_primary;
       align-self: center;
     }
+  }
+  @include mixins.responsive(tablet){
+    padding-top: 10px;
   }
 }
 </style>
