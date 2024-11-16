@@ -1,36 +1,28 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
-import dayArticle from "@/components/dayArticle.vue";
+import fullArticle from "@/components/fullArticle.vue";
 </script>
 
 <template>
   <div class="wrap">
     <aside>
       <section>
-        <h4>Kořínek 2024</h4>
-        <p>Kořínek 2023</p>
-        <p>Kořínek 2022</p>
-        <p>Vránov 2021</p>
-        <p>Vránov 2020</p>
-        <p>Vránov 2019</p>
-        <p>Vránov 2018</p>
-        <p>Vránov 2017</p>
-        <p>Vránov 2016</p>
-        <p>Vránov 2015</p>
-        <p>Kořen 2014</p>
-        <p>Kořen 2013</p>
-        <p>Kořen 2012</p>
-        <p>Kořen 2011</p>
-        <p>Kořen 2010</p>
+        <h4>1. den - název článku</h4>
+        <p>2. den - název článku</p>
+        <p>3. den - název článku</p>
+        <p>4. den - název článku</p>
+        <p>5. den - název článku</p>
+        <p>6. den - název článku</p>
+        <p>7. den - název článku</p>
+        <p>8. den - název článku</p>
+        <p>9. den - název článku</p>
+        <p>10. den - název článku</p>
+        <p>11. den - název článku</p>
+        <p>12. den - název článku</p>
       </section>
     </aside>
     <main>
-      <dayArticle></dayArticle>
-      <dayArticle></dayArticle>
-      <span
-        ><p class="button"><i class="fa-solid fa-chevron-left"></i></p>
-        <p class="button"><i class="fa-solid fa-chevron-right"></i></p
-      ></span>
+      <fullArticle></fullArticle>
     </main>
   </div>
   <footerBar></footerBar>
@@ -49,10 +41,10 @@ import dayArticle from "@/components/dayArticle.vue";
     width: 30vw;
     display: flex;
     justify-content: center;
-    height: 90%;
     line-height: 1.4;
     border-right: 3px colors.$green_primary solid;
     padding-bottom: 60px;
+    margin-bottom: 150px;
 
     section {
       display: flex;
@@ -61,14 +53,15 @@ import dayArticle from "@/components/dayArticle.vue";
       margin: 0 20px 0 20px;
       p {
         font-size: 1.1em;
-        &:hover{
+        &:hover {
           cursor: pointer;
         }
         @include mixins.responsive(tablet) {
           min-width: 130px;
         }
       }
-      h4 {       &:hover{
+      h4 {
+        &:hover {
           cursor: pointer;
         }
         @include mixins.responsive(tablet) {
@@ -98,7 +91,8 @@ import dayArticle from "@/components/dayArticle.vue";
     margin: 0 20px 0 20px;
     gap: 40px;
     width: 80%;
-    padding-bottom: 250px;
+        margin-bottom: 150px;
+
     span {
       display: flex;
       flex-direction: row;

@@ -25,7 +25,7 @@ import footerBar from "@/components/footer.vue";
           <h4>Kateřina Spieglová</h4>
           <p>+420 724 989 505</p>
         </article>
-<!--         <article>
+        <!--         <article>
           <h4>Adresa tábora</h4>
           <p>Tábor VRÁNOV Lomnice</p>
           <p class="green">jméno a příjmení dítěte</p>
@@ -34,14 +34,13 @@ import footerBar from "@/components/footer.vue";
       </div>
     </section>
   </main>
-      <footerBar></footerBar>
-
+  <footerBar></footerBar>
 </template>
 
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
-h4{
+h4 {
   color: colors.$green_primary;
 }
 main {
@@ -55,7 +54,7 @@ main {
     @include mixins.responsive(tablet) {
       padding-top: 30px;
     }
-        @include mixins.responsive(mobile) {
+    @include mixins.responsive(mobile) {
       padding-top: 20px;
     }
   }
@@ -68,40 +67,43 @@ main {
       display: grid;
       gap: 30px;
       grid-template-columns: 1fr 1fr;
-              text-align: center;
+      text-align: center;
 
       article {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        @include mixins.responsive(mobile) {
+          font-size: 0.9em;
+        }
       }
-    @include mixins.responsive(mobile){
-      grid-template-columns: 1fr;
+      @include mixins.responsive(mobile) {
+        grid-template-columns: 1fr;
+      }
     }
-    }
-    @include mixins.responsive(tablet){
+    @include mixins.responsive(tablet) {
       width: 90%;
     }
   }
   @include mixins.responsive(tablet) {
-  height: calc(100vh - 70px - 200px);
-    padding-bottom: 50px;
-
+    height: calc(100vh - 70px - 200px);
+  }
+  @include mixins.responsiveH(670px) {
+    padding-bottom: calc(670px - 100vh);
   }
   @include mixins.responsive(mobile) {
-      height: calc(100vh - 70px - 190px);
-      gap:20px;
-
+    height: calc(100vh - 70px - 190px);
+    gap: 20px;
   }
 }
 footerBar {
-    position: absolute;
-    bottom: 0;
-    rotate: 0deg;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    z-index: 1;
+  position: absolute;
+  bottom: 0;
+  rotate: 0deg;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
 }
 </style>

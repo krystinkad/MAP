@@ -79,5 +79,8 @@ import sponsors from "@/components/sponsors.vue";
       align-self: center;
     }
   }
+  @include mixins.responsive(tablet){
+    padding-top: 10px;
+  }
 }
 </style>

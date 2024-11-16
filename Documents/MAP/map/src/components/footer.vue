@@ -51,8 +51,7 @@ import { RouterLink, RouterView } from "vue-router";
   flex-direction: column;
   justify-content: space-between;
   bottom: 0px;
-        margin: 0;
-
+  margin: 0;
 
   .contactsWrap {
     display: flex;
@@ -69,16 +68,15 @@ import { RouterLink, RouterView } from "vue-router";
       h3 {
         font-size: 1.8em;
         @include mixins.responsive(laptop) {
-                    padding-top:30px ;
+          padding-top: 30px;
 
           font-size: 1.5em;
         }
         @include mixins.responsive(tablet) {
-          padding-top:50px ;
+          padding-top: 50px;
           font-size: 1em;
-          
         }
-      } 
+      }
       span {
         font-family: "Quicksand", sans-serif;
         display: flex;
@@ -91,7 +89,7 @@ import { RouterLink, RouterView } from "vue-router";
         }
         @include mixins.responsive(900px) {
           font-size: 0.8em;
-          gap:10px;
+          gap: 10px;
         }
       }
       @include mixins.responsive(1300px) {
@@ -102,7 +100,7 @@ import { RouterLink, RouterView } from "vue-router";
       }
       @include mixins.responsive(tablet) {
         padding-top: 10px;
-        gap:5px;
+        gap: 5px;
       }
       @include mixins.responsive(555px) {
         padding-top: 10px;
@@ -115,7 +113,7 @@ import { RouterLink, RouterView } from "vue-router";
       }
     }
     @include mixins.responsive(mobile) {
-        align-items: center;
+      align-items: center;
     }
   }
   .copy {
@@ -137,30 +135,30 @@ import { RouterLink, RouterView } from "vue-router";
       }
     }
     @include mixins.responsive(900px) {
-        justify-content: end;
-        width: 80%;
-        align-self: flex-end;
-                margin: 0;
+      justify-content: end;
+      width: 100%;
+      align-self: flex-end;
+      margin: 0;
 
-        margin-right: 20px;
+      margin-right: 20px;
     }
-    @include mixins.responsive(tablet){
+    @include mixins.responsive(tablet) {
       font-size: 0.8em;
       margin-right: 60px;
     }
-    @include mixins.responsive(555px){
+    @include mixins.responsive(555px) {
       font-size: 0.6em;
-      margin-right: 40px;
+      margin: 0px;
       justify-content: center;
-
     }
   }
-      @include mixins.responsive(555px){
-      justify-content: end;
-      margin: 0;
-      text-align: center;
-      width: 100%;
-    }
+  @include mixins.responsive(555px) {
+    justify-content: end;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    align-self: center;
+  }
   @include mixins.responsive(tablet) {
     height: 200px;
   }
@@ -168,7 +166,7 @@ import { RouterLink, RouterView } from "vue-router";
     height: 190px;
     bottom: 0;
   }
-} 
+}
 img.wave {
   position: absolute;
   bottom: 0;
