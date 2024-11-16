@@ -26,7 +26,7 @@ function dropdown() {
     </div>
     <img class="wave" src="@/assets/header_wave.svg" alt="" />
   </div>
-</template>
+</template> t 
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
