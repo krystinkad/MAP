@@ -17,7 +17,7 @@ import { RouterLink, RouterView } from "vue-router";
     </div>
     <img class="wave" src="@/assets/header_wave.svg" alt="">
   </div>
-</template>
+</template> 
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
 .wrap{
