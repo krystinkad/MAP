@@ -64,32 +64,19 @@ import note from "@/components/note.vue";
     <section class="vzkazy">
       <note></note> <note></note>
       <note></note>
-
     </section>
   </main>
- <footerBar></footerBar>
+  <footerBar></footerBar>
 </template>
 
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
 
-b {
-  font-weight: 600;
-}
-.green {
-  color: colors.$green_primary;
-  font-weight: 600;
-}
-h2,
 h3 {
-  font-family: "Luckiest";
   color: colors.$green_primary;
-  font-size: 2.8em;
-  padding: 35px 0 25px 0;
 }
 main {
-  //height: calc(100vh - 70px);
   position: relative;
   width: 100%;
   background-image: url("/img/background.png");
@@ -98,12 +85,14 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom:60px;
+  padding-bottom: 60px;
   margin-bottom: -30px;
   h2 {
     padding-top: 100px;
-    font-size: 3em;
-    color: colors.$green_dark;
+    padding-bottom: 50px;
+    @include mixins.responsive(tablet) {
+      padding-top: 80px;
+    }
   }
   img.wave1 {
     rotate: 180deg;
@@ -159,24 +148,27 @@ main {
           }
         }
       }
-                @include mixins.responsive(tablet){
-            width: 80%;
-}
+      @include mixins.responsive(tablet) {
+        width: 80%;
+      }
     }
     .dopisy {
       display: flex;
       flex-direction: column;
       gap: 20px;
       width: 40%;
-          @include mixins.responsive(tablet){
-            width: 80%;
-}
+      @include mixins.responsive(tablet) {
+        width: 80%;
+      }
     }
-    @include mixins.responsive(tablet){
+    @include mixins.responsive(tablet) {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap:50px;
+      padding:40px 0 40px 0;
     }
+
   }
   section.vzkazy {
     padding: 70px;
@@ -184,9 +176,9 @@ main {
     gap: 30px;
     grid-template-columns: 1fr 1fr 1fr;
   }
-    @include mixins.responsive(1000px) {
+  @include mixins.responsive(1000px) {
     grid-template-columns: 1fr 1fr;
-    }
+  }
 }
 footerBar {
   position: absolute;

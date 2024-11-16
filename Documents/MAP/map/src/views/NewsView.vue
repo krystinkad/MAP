@@ -8,7 +8,7 @@ import dayArticle from "@/components/dayArticle.vue";
   <div class="wrap">
     <aside>
       <section>
-        <h3>Kořínek 2024</h3>
+        <h4>Kořínek 2024</h4>
         <p>Kořínek 2023</p>
         <p>Kořínek 2022</p>
         <p>Vránov 2021</p>        
@@ -37,11 +37,11 @@ import dayArticle from "@/components/dayArticle.vue";
 
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
-h3 {
+/* h3 {
   font-family: "Luckiest";
   font-size: 1.5em;
   color: colors.$green_primary;
-}
+} */
 .wrap {
   padding-top: 60px;
   display: flex;

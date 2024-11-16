@@ -28,22 +28,6 @@
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
-
-h2,
-h3 {
-  font-family: "Luckiest";
-  color: colors.$green_dark;
-  font-size: 2.8em;
-  padding: 25px 0 15px 0;
-      @include mixins.responsive(tablet) {
-      font-size: 2.2em;
-      text-align: center;
-    }
-    @include mixins.responsive(mobile) {
-      font-size: 1.6em;
-      padding-top: 10px;
-    }
-}
 main {
   height: calc(100vh - 70px);
   display: flex;

@@ -77,6 +77,8 @@ function dropdown() {
         color: colors.$green_dark;
         text-decoration: none;
         z-index: 7;
+            text-align: center;
+
         @include mixins.responsive(laptop) {
           font-size: 1em;
           padding: 15px;

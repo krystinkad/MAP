@@ -1,0 +1,8 @@
+@use "@/assets/colors.scss" as colors;
+.green {
+    color: colors.$green_primary;
+    font-weight: 600;
+  }
+  b {
+    font-weight: 600;
+  }

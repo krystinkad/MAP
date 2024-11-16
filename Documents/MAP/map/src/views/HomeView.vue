@@ -58,11 +58,6 @@ import sponsors from "@/components/sponsors.vue";
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
 
-h2 {
-  font-family: "Luckiest";
-  font-size: 2.8em;
-  padding: 25px;
-}
 main.homePage {
   display: flex;
   flex-direction: column;
@@ -79,7 +74,10 @@ main.homePage {
     color: colors.$clr_white;
     padding: 50px;
     gap: 20px;
-    h2 {
+    h2{
+      color: colors.$clr_white;
+    }
+/*     h2 {
       text-align: center;
       @include mixins.responsive(tablet) {
         font-size: 2.3em;
@@ -88,7 +86,7 @@ main.homePage {
         font-size: 1.8em;
         padding-top: 10px;
       }
-    }
+    } */
     .countdownCont {
       display: flex;
       flex-direction: row;
@@ -151,7 +149,7 @@ main.homePage {
     flex-direction: column;
     align-items: center;
     font-family: "Quicksand", sans-serif;
-    h2 {
+/*     h2 {
       color: colors.$green_dark;
       @include mixins.responsive(tablet) {
         font-size: 1.6em;
@@ -160,7 +158,7 @@ main.homePage {
         font-size: 1.3em;
         padding-top: 10px;
       }
-    }
+    } */
   }
   .separatorLine {
     display: flex;
