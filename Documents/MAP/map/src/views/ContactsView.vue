@@ -56,6 +56,7 @@ main {
     }
     @include mixins.responsive(mobile) {
       padding-top: 20px;
+      height: 100vh;
     }
   }
   .contacts {
@@ -98,12 +99,15 @@ main {
   }
 }
 footerBar {
-  position: absolute;
+  //position: absolute;
   bottom: 0;
   rotate: 0deg;
   width: 100%;
   padding: 0;
   margin: 0;
   z-index: 1;
+  @include mixins.responsive(tablet) {
+    z-index: 0;
+}
 }
 </style>
