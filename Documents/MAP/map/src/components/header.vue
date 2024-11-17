@@ -102,6 +102,7 @@ function dropdown() {
     @include mixins.responsive(tablet) {
       position: absolute;
       min-height: 100vh;
+      height: fit-content;
       flex-direction: column;
       align-items: center;
       justify-content: start;
@@ -113,17 +114,14 @@ function dropdown() {
       @include mixins.responsive(tablet) {
         display: flex;
         flex-direction: column;
-        //height: 150vh;
         font-size: 1.5em;
         align-items: center;
         width: 100%;
-        padding-bottom: 70vh;
         z-index: 30;
       }
       @include mixins.responsive(mobile) {
         display: flex;
         flex-direction: column;
-        //height: 100%;
         font-size: 1.2em;
         align-items: center;
       }

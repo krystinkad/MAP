@@ -50,7 +50,6 @@ h3 {
     }
 
     @include mixins.responsive(mobile) {
-        font-size: 0.8em;
         padding-top: 10px;
     }
 }
@@ -65,4 +64,14 @@ h4 {
         padding-top: 10px;
     }
 
+}
+
+p {
+    @include mixins.responsive(tablet) {
+        font-size: 0.9em;
+    }
+
+    @include mixins.responsive(mobile) {
+        font-size: 0.85em;
+    }
 }

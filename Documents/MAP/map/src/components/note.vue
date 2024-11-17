@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from "vue-router";
         a vždy jedinečný.Strava,vedoucí a zázemí vynikající.Naši kluci se vrací
         každý rok nadšeni.Držíme palce do dalších ročníků bohužel jižbez
         nás,kluci jsou již příští rok staří,ale mají na co
-        vzpomínat.DěkujemeHeřman Tomáš
+        vzpomínat. Děkujeme Heřman Tomáš
       </p>
     </article>
   </div>
@@ -31,14 +31,6 @@ import { RouterLink, RouterView } from "vue-router";
     border-radius: 15px;
     gap: 20px;
     line-height: 1.2;
-    .green {
-        display: flex;
-        flex-wrap: wrap;
-        color: colors.$green_primary;
-        font-weight: 600;
-        flex-direction: row;
-        gap: 5px;
-    }
 }
 </style>
 
