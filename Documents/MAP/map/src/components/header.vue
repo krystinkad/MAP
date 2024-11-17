@@ -66,7 +66,7 @@ function dropdown() {
       @include mixins.responsive(tablet) {
         display: block;
         padding: 0 20px 0 20px;
-      }
+}
     }
     nav {
       padding: 30px 20px 0 20px;
@@ -101,19 +101,24 @@ function dropdown() {
   div.visible {
     @include mixins.responsive(tablet) {
       position: absolute;
-      height: 100vh;
+      min-height: 100vh;
       flex-direction: column;
       align-items: center;
       justify-content: start;
       width:100%;
+              overflow: hidden;
+
     }
     nav {
       @include mixins.responsive(tablet) {
         display: flex;
         flex-direction: column;
-        //height: 100%;
+        //height: 150vh;
         font-size: 1.5em;
         align-items: center;
+        width: 100%;
+        padding-bottom: 70vh;
+        z-index: 30;
       }
       @include mixins.responsive(mobile) {
         display: flex;

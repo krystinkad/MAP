@@ -161,6 +161,7 @@ import { RouterLink, RouterView } from "vue-router";
   }
   @include mixins.responsive(tablet) {
     height: 200px;
+    z-index: 0;
   }
   @include mixins.responsive(mobile) {
     height: 190px;
