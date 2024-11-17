@@ -57,7 +57,8 @@ import fullArticle from "@/components/fullArticle.vue";
           cursor: pointer;
         }
         @include mixins.responsive(tablet) {
-          min-width: 130px;
+          min-width: 150px;
+          text-align: center;
         }
       }
       h4 {
@@ -65,7 +66,8 @@ import fullArticle from "@/components/fullArticle.vue";
           cursor: pointer;
         }
         @include mixins.responsive(tablet) {
-          min-width: 130px;
+          min-width: 130px;          text-align: center;
+
           margin-top: -5px;
         }
       }
@@ -83,6 +85,7 @@ import fullArticle from "@/components/fullArticle.vue";
       justify-content: start;
       padding-bottom: 20px;
       align-self: center;
+      margin-bottom: 20px
     }
   }
   main {
@@ -113,9 +116,16 @@ import fullArticle from "@/components/fullArticle.vue";
     }
     @include mixins.responsive(tablet) {
       width: 90%;
-      padding-top: 60px;
+      padding-top: 40px;
       align-self: center;
-      padding-bottom: 100px;
+      padding-bottom: 50px;
+      margin-bottom: 100px;
+    }
+        @include mixins.responsive(mobile) {
+      width: 90%;
+      padding-top: 40px;
+      align-self: center;
+      margin-bottom: 50px;
     }
   }
 
