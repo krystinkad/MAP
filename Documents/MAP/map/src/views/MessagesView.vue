@@ -165,19 +165,24 @@ main {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap:50px;
-      padding:40px 0 40px 0;
+      gap: 50px;
+      padding: 40px 0 40px 0;
     }
-
   }
   section.vzkazy {
-    padding: 70px;
+    margin: 70px;
     display: grid;
-    gap: 30px;
+    gap: 20px;
+    width: 90%;
     grid-template-columns: 1fr 1fr 1fr;
-  }
-  @include mixins.responsive(1000px) {
-    grid-template-columns: 1fr 1fr;
+    @include mixins.responsive(tablet) {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 20px;
+    }
+    @include mixins.responsive(555px) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
   }
 }
 footerBar {

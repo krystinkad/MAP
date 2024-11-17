@@ -7,11 +7,15 @@ import footerBar from "@/components/footer.vue";
     <div class="files">
       <h2>soubory ke stažení</h2>
       <span class="divider"></span>
-      <p><i class="fa-solid fa-download"></i> Přihláška</p>
+      <p class="text"><i class="fa-solid fa-download"></i> Přihláška</p>
       <span class="divider"></span>
-      <p><i class="fa-solid fa-download"></i> Potvrzení o bezinfekčnosti</p>
+      <p class="text">
+        <i class="fa-solid fa-download"></i> Potvrzení o bezinfekčnosti
+      </p>
       <span class="divider"></span>
-      <p><i class="fa-solid fa-download"></i> Seznam věcí s sebou</p>
+      <p class="text">
+        <i class="fa-solid fa-download"></i> Seznam věcí s sebou
+      </p>
       <span class="divider"></span>
       <span>
         <h3>Fotky a videa</h3>
@@ -42,6 +46,7 @@ main {
   background-image: url("/img/background.png");
   background-size: cover;
   background-position: center;
+  background-repeat: repeat-y;
   z-index: 0;
   padding: 0;
   .files {
@@ -49,15 +54,18 @@ main {
     background-color: colors.$clr_white;
     border-radius: 20px;
     border: colors.$green_primary 3px solid;
-    margin-left: calc(35vw);
+    margin-left: 35vw;
     margin-bottom: 10vh;
+    width: 30%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    p {
+    align-items: center;
+
+    p.text {
       width: fit-content;
       text-align: start;
       font-size: 1em;
+      width: 90%;
       i {
         color: colors.$green_primary;
         font-size: 1em;
@@ -70,8 +78,12 @@ main {
       display: block;
       height: 2px;
       width: 90%;
+      align-self: center;
       background-color: colors.$green_primary;
       margin: 15px 0 15px 0;
+      @include mixins.responsiveH(610px) {
+        margin: 10px 0 10px 0;
+      }
     }
     span {
       width: 90%;
@@ -93,9 +105,33 @@ main {
       flex-direction: column;
       padding: 20px;
     }
+    @include mixins.responsiveH(650px) {
+      width: 70%;
+      margin-left: 0;
+      margin-bottom: 50px;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    @include mixins.responsiveH(610px) {
+      width: 70%;
+      margin-left: 0;
+      font-size: 90%;
+            margin-top: 50px;
+
+    }
   }
   @include mixins.responsive(tablet) {
     justify-content: center;
+  }
+  @include mixins.responsiveH(650px) {
+    justify-content: center;
+    margin: 0;
+  }
+  @include mixins.responsiveH(550px) {
+    height: fit-content;
+    margin-bottom: -60px;
+    min-height: calc(100vh - 70px);
+    height: fit-content;
   }
 }
 img.image {
@@ -106,6 +142,9 @@ img.image {
   z-index: 6;
   justify-self: end;
   left: 60px;
+  z-index: 10;
+  margin-bottom: -3px;
+
   @include mixins.responsive(laptop) {
     max-height: 50vh;
     left: 30px;
@@ -117,6 +156,11 @@ img.image {
   @include mixins.responsive(mobile) {
     display: none;
   }
+    @include mixins.responsiveH(550px) {
+     /*  position: absolute;
+      bottom: -98px; */
+      display: none;
+}
 }
 img.wave {
   position: absolute;
@@ -124,11 +168,14 @@ img.wave {
   rotate: 0deg;
   width: 100vw;
   padding: 0;
-  margin: -1px;
-  z-index: 1;
+  margin-bottom: -3px;
+  z-index: 9;
+  @include mixins.responsiveH(550px) {
+    display: none;
+  }
 }
-.button{
-  width: min-content;
-text-align: center;
+.button {
+  width: fit-content;
+  text-align: center;
 }
 </style>
