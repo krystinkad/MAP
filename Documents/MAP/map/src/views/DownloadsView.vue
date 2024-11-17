@@ -48,6 +48,7 @@ main {
   background-position: center;
   background-repeat: repeat-y;
   z-index: 0;
+  overflow: scroll;
   padding: 0;
   .files {
     padding: 30px;
@@ -112,11 +113,11 @@ main {
       padding: 20px;
       margin-top: 40px;
     }
-    @include mixins.responsiveH(610px) {
-      width: 70%;
+    @include mixins.responsiveH(600px) {
+      width: 60%;
       margin-left: 0;
       font-size: 90%;
-            margin-top: 50px;
+      margin-top: 50px;
 
     }
   }
@@ -146,19 +147,17 @@ img.image {
   margin-bottom: -3px;
 
   @include mixins.responsive(laptop) {
-    max-height: 50vh;
+    max-height: 40vh;
     left: 30px;
   }
   @include mixins.responsive(tablet) {
-    max-height: 40vh;
+    max-height: 30vh;
     left: 10px;
   }
   @include mixins.responsive(mobile) {
     display: none;
   }
-    @include mixins.responsiveH(550px) {
-     /*  position: absolute;
-      bottom: -98px; */
+    @include mixins.responsiveH(600px) {
       display: none;
 }
 }
@@ -170,7 +169,7 @@ img.wave {
   padding: 0;
   margin-bottom: -3px;
   z-index: 9;
-  @include mixins.responsiveH(550px) {
+  @include mixins.responsiveH(620px) {
     display: none;
   }
 }
