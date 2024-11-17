@@ -25,12 +25,6 @@ import footerBar from "@/components/footer.vue";
           <h4>Kateřina Spieglová</h4>
           <p>+420 724 989 505</p>
         </article>
-        <!--         <article>
-          <h4>Adresa tábora</h4>
-          <p>Tábor VRÁNOV Lomnice</p>
-          <p class="green">jméno a příjmení dítěte</p>
-          <p>356 01 Sokolov</p>
-        </article> -->
       </div>
     </section>
   </main>
@@ -56,7 +50,6 @@ main {
     }
     @include mixins.responsive(mobile) {
       padding-top: 20px;
-      height: 100vh;
     }
   }
   .contacts {

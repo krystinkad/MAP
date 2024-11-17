@@ -5,11 +5,11 @@ import note from "@/components/note.vue";
 
 <template>
   <main>
-    <h2>Táborová pošta</h2>
+    <h1>Táborová pošta</h1>
     <img class="wave wave1" src="@/assets/header_wave.svg" alt="" />
     <section class="sendForm">
       <article class="vzkazy">
-        <h3>Vzkazy</h3>
+        <h2>Vzkazy</h2>
         <p>
           V průběhu konání tábora můžete psát vzkazy vašim dětem. Vzkazy budeme
           dětem denně předávat. <b>Děti vám na ně ale nebudou odpovídat</b>
@@ -17,7 +17,7 @@ import note from "@/components/note.vue";
         <p>
           Pokud budete mít nějaký dotaz na vedení tábora kontaktujte nás pomocí
           e-mailu nebo mobilního telefonu.
-          <b>Kontakty naleznete <a href="">zde.</a></b>
+          <b>Kontakty naleznete <RouterLink class="link" to="/contacts">zde.</RouterLink></b>
         </p>
         <form action="">
           <span>
@@ -38,7 +38,7 @@ import note from "@/components/note.vue";
         </form>
       </article>
       <article class="dopisy">
-        <h3>Dopisy</h3>
+        <h2>Dopisy</h2>
         <p>
           Během tábora můžete posílat dopisy, pohledy a balíčky.
           <b>Určitě nezapomeňte!</b> Děti jsou pak smutné, když vidí kamarády,
@@ -73,7 +73,7 @@ import note from "@/components/note.vue";
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
 
-h3 {
+h2 {
   color: colors.$green_primary;
 }
 main {
@@ -87,7 +87,7 @@ main {
   align-items: center;
   padding-bottom: 60px;
   margin-bottom: -30px;
-  h2 {
+  h1 {
     padding-top: 100px;
     padding-bottom: 50px;
     @include mixins.responsive(tablet) {
@@ -175,7 +175,7 @@ main {
     gap: 20px;
     width: 90%;
     grid-template-columns: 1fr 1fr 1fr;
-    @include mixins.responsive(tablet) {
+    @include mixins.responsive(1000px) {
       grid-template-columns: 1fr 1fr;
       column-gap: 20px;
     }
