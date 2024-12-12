@@ -12,7 +12,7 @@ function dropdown() {
   <div class="wrap">
     <div :class="['headerContainer', { visible: isVisible }]">
       <RouterLink class="link" to="/" @click="dropdown()">
-        <img src="/img/header_text.png" alt="Kořínek"
+        <img src="/img/header_text.png" alt="Kořínek"v
       /></RouterLink>
       <i class="fa-solid fa-bars" @click="dropdown()"></i>
 
@@ -26,7 +26,7 @@ function dropdown() {
     </div>
     <img class="wave" src="@/assets/header_wave.svg" alt="" />
   </div>
-</template> t 
+</template>
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
