@@ -1,6 +1,20 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
 import sponsors from "@/components/sponsors.vue";
+import ref from 'vue';
+
+const countdownDate = new Date("Dec 31, 2024 23:59:59").getTime();
+const interval = setInterval(() => {
+    const now = ref(new Date().getTime());
+    const distance = countdownDate - now;
+
+    const days = ref(Math.floor(distance / (1000 * 60 * 60 * 24)));
+
+    const hours = ref(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    const minutes = ref(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+    const seconds = ref(Math.floor((distance % (1000 * 60)) / 1000));
+}, 1000);
+
 </script>
 
 <template>
@@ -10,7 +24,7 @@ import sponsors from "@/components/sponsors.vue";
       <h2>Další tábor začíná za</h2>
       <div class="countdownCont">
         <div class="countdownPart">
-          <p>00</p>
+          <p>{{ days.value }}</p>
           <p>dní</p>
         </div>
         <div class="countdownPart">
@@ -18,7 +32,7 @@ import sponsors from "@/components/sponsors.vue";
           <p>&nbsp;</p>
         </div>
         <div class="countdownPart">
-          <p>00</p>
+        <p>{{ hours.value }}</p>
           <p>hodin</p>
         </div>
         <div class="countdownPart">
@@ -26,7 +40,8 @@ import sponsors from "@/components/sponsors.vue";
           <p>&nbsp;</p>
         </div>
         <div class="countdownPart">
-          <p>00</p>
+          
+      <p>{{ minutes.value }} </p>
           <p>minut</p>
         </div>
         <div class="countdownPart">
@@ -34,7 +49,7 @@ import sponsors from "@/components/sponsors.vue";
           <p>&nbsp;</p>
         </div>
         <div class="countdownPart">
-          <p>00</p>
+          <p>{{ seconds.value }}</p>
           <p>sekund</p>
         </div>
       </div>
