@@ -1,0 +1,30 @@
+@use "@/assets/colors.scss" as colors;
+
+.green {
+  color: colors.$green_primary;
+  font-weight: 600;
+}
+
+b {
+  font-weight: 600;
+}
+
+.button {
+  transition: ease 0.2s;
+
+  font-family: "Luckiest";
+  color: colors.$clr_white;
+  padding: 15px 20px 10px 20px;
+  background-color: colors.$green_primary;
+  font-size: 1.2em;
+  border-radius: 50px;
+  width: fit-content;
+  text-decoration: none;
+  margin: 10px 0 10px 0;
+
+  &:hover {
+    transition: ease 0.2s;
+    cursor: pointer;
+    scale: 1.05;
+  }
+}

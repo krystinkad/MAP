@@ -1,0 +1,77 @@
+@use "../assets/colors.scss" as colors;
+@use "../assets/mixins.scss" as mixins;
+@use "../assets/fonts.scss" as fonts;
+
+h1{
+    font-size: 2.8em;
+    font-family: 'Luckiest';
+    color: colors.$green_dark;
+    text-align: center;
+
+    @include mixins.responsive(tablet) {
+        font-size: 2.3em;
+    }
+
+    @include mixins.responsive(mobile) {
+        font-size: 1.8em;
+    }
+}
+
+h2 {
+    text-align: center;
+
+    font-family: "Luckiest";
+    font-size: 2.3em;
+    padding: 25px 0 25px 0;
+    color: colors.$green_dark;
+
+    @include mixins.responsive(tablet) {
+        font-size: 1.8em;
+    }
+
+    @include mixins.responsive(mobile) {
+        font-size: 1.3em;
+        padding: 10px 0 10px 0;
+    }
+}
+
+h3 {
+    text-align: center;
+    font-family: "Luckiest";
+    color: colors.$green_dark;
+    font-size: 1.8em;
+    padding: 25px 0 15px 0;
+
+    @include mixins.responsive(tablet) {
+        font-size: 1.3em;
+        text-align: center;
+        padding: 15px 0 15px 0;
+
+    }
+
+    @include mixins.responsive(mobile) {
+        padding-top: 10px;
+    }
+}
+
+h4 {
+    font-family: "Luckiest";
+    color: colors.$green_dark;
+    font-size: 1.3em;
+
+    @include mixins.responsive(tablet) {
+        font-size: 1.1em;
+        padding-top: 10px;
+    }
+
+}
+
+p {
+    @include mixins.responsive(tablet) {
+        font-size: 0.9em;
+    }
+
+    @include mixins.responsive(mobile) {
+        font-size: 0.85em;
+    }
+}
