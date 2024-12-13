@@ -1,5 +1,7 @@
 <script setup>
 import headerBar from '../components/header.vue'
+import textEdit from '../components/textEdit.vue'
+
 </script>
 
 <template>
@@ -9,6 +11,7 @@ import headerBar from '../components/header.vue'
       <section class="flexC">
         <label for="nadpis">Nadpis článku</label>
         <input type="text" class="input" name="nadpis" id="">
+        <textEdit></textEdit>
       </section>
       
     </form>
