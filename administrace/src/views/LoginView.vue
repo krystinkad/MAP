@@ -20,10 +20,13 @@
 @use "@/assets/imports.scss";
 
 main{
-  width: 100%;
+  width: 99%;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  position: absolute;
+  top:0;
 }
 form{
   width: 40%;
