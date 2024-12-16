@@ -7,7 +7,7 @@ import textEdit from '../components/textEdit.vue'
 <template>
   <main class="flexC"> 
     <form action="" id="new">
-      <h1>Nový článek</h1>
+      <h3>Nový článek</h3>
       <section class="flexC">
         <label for="nadpis">Nadpis článku</label>
         <input type="text" class="input" name="nadpis" id="">
@@ -18,7 +18,7 @@ import textEdit from '../components/textEdit.vue'
     <span class="divider"></span>
 
     <form action="" id="edit">
-      <h1>Upravit článek</h1>
+      <h3>Upravit článek</h3>
       <section class="flexC">
         <label for="select">Vyberte článek k úpravě</label>
         <select class="input" name="select" id="">
@@ -33,7 +33,7 @@ import textEdit from '../components/textEdit.vue'
     </form>
     <span class="divider"></span>
     <form action="" id="delete">
-      <h1>Smazat článek</h1>
+      <h3>Smazat článek</h3>
       <section class="flexC">
         <select class="input" name="select" id="">
           <option value="">Clanek1</option>
@@ -46,12 +46,12 @@ import textEdit from '../components/textEdit.vue'
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles.scss" as colors;
 @use "@/assets/fonts.scss" as fonts;
 @use "@/assets/imports.scss";
 
-h1{
+h3{
   font-family: 'Luckiest';
 }
 main{

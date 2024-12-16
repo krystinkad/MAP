@@ -1,14 +1,13 @@
 <script setup>
-import headerBar from '../components/header.vue'
-import textEdit from '../components/textEdit.vue'
 
 </script>
 
 <template>
+  <div>
   <main class="flexR"> 
     <section class="flexC">
     <form action="">
-      <h1>Nahrát fotky</h1>
+      <h3>Nahrát fotky</h3>
       <section class="flexC">
         <label for="folderName">Název složky</label>
         <input type="text" class="input" name="folderName" id="">
@@ -17,7 +16,7 @@ import textEdit from '../components/textEdit.vue'
       </section>
     </form>
     <form action="">
-      <h1>Odstranit fotky</h1>
+      <h3>Odstranit fotky</h3>
       <section class="flexC">
         <label for="images">Vyberte soubror</label>
         <select class="input" name="images" id="">
@@ -32,24 +31,31 @@ import textEdit from '../components/textEdit.vue'
     <p>Zobrazení složek</p>
   </aside>
   </main>
+</div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles.scss" as colors;
 @use "@/assets/fonts.scss" as fonts;
 @use "@/assets/imports.scss";
-
-h1{
-  font-family: 'Luckiest';
-}
-main{
+div{
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80vw;
 }
-form{
+main{
+  //margin: 0 100px 0 100px;
+  gap: 50px;
+  width: 90%;
+  display: flex;
+  align-self: center;
+  width: 80%;
+}
+section{
+  width: 70%;
 }
 aside{
-  width: 10vw;
+  padding-top: 50px;
 }
 </style>

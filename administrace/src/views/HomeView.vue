@@ -7,7 +7,7 @@ import textEdit from '../components/textEdit.vue'
 <template>
   <main class="flexC"> 
     <form action="">
-      <h1>Nový článek</h1>
+      <h3>Nový článek</h3>
       <section class="flexC">
         <label for="nadpis">Nadpis článku</label>
         <input type="text" class="input" name="nadpis" id="">
@@ -18,10 +18,12 @@ import textEdit from '../components/textEdit.vue'
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles.scss" as colors;
 @use "@/assets/fonts.scss" as fonts;
-h1{
+@use "@/assets/imports.scss";
+
+h3{
   font-family: 'Luckiest';
 }
 main{

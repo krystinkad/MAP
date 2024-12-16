@@ -18,7 +18,7 @@ function getCurrentDatetime() {
 <template>
   <main class="flexC"> 
     <form action="">
-      <h1>Přidat aktualitu</h1>
+      <h3>Přidat aktualitu</h3>
       <section class="flexC">
         <label for="date">Datum</label>
         <input type="datetime-local" name="date" id="" :value="getCurrentDatetime()">
@@ -30,12 +30,12 @@ function getCurrentDatetime() {
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles.scss" as colors;
 @use "@/assets/fonts.scss" as fonts;
 @use "@/assets/imports.scss";
 
-h1{
+h3{
   font-family: 'Luckiest';
 }
 main{
