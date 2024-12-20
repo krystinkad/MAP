@@ -1,15 +1,86 @@
 <script setup>
-</script>
+import router from '@/router';
+import { ref,computed, onBeforeMount} from 'vue';
+import { serverAddress } from '../stores/address.js'
+
+const add = serverAddress();
+const username = ref("");
+const password = ref("");
+
+
+const token = localStorage.getItem("token");
+
+if (token) {
+    router.push("/article");
+}
+
+const login = () => {
+    fetch(`${add.address}/login`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value
+        })
+    })
+    .then(response=>{
+        console.log(":((()))")
+    })
+/*     .then(response => {
+        if (!response.ok) {
+            return Promise.reject('Login failed with status ' + response.status);
+        }
+        return response.json();
+    })
+    .then(( token ) => {
+        localStorage.setItem("token", token.token);
+        router.push("/info");
+    }).catch(error => {
+        console.error('Error during login:', error);
+    }); */
+};
+
+onBeforeMount(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        fetch(`${add.address}/auth`, {
+            headers: {
+                "Content-Type": "application/json",
+                "token":token
+            },
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify({
+                token: token
+            })
+        })
+        .then(response => {
+            if (response.status === 200) {
+                router.push('/info');
+            }
+             else {
+                localStorage.removeItem("token");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            localStorage.removeItem("token");
+        });
+    }
+});</script>
 
 <template>
   <main>
     <form action="" class="flexC">
       <h1>Přihlaste se</h1>
       <label for="name">Jméno</label>
-      <input class="input" type="text" name="" id="">
+      <input v-model="username" class="input" type="text" name="" id="">
       <label for="pass">Heslo</label>
-      <input class="input" type="password" name="pass" id="">
-      <button class="button">Přihlásit se</button>
+      <input v-model="password" class="input" type="password" name="pass" id="">
+      <button class="button" @click="login()">Přihlásit se</button>
     </form>
   </main>
 </template>

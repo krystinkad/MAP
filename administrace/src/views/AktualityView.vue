@@ -1,6 +1,13 @@
 <script setup>
 import headerBar from '../components/header.vue'
 import textEdit from '../components/textEdit.vue'
+import router from '@/router';
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+    router.push("/");
+}
 
 function getCurrentDatetime() {
             const now = new Date();

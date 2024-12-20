@@ -1,6 +1,12 @@
 <script setup>
 import headerBar from '../components/header.vue'
+import router from '@/router';
 
+const token = localStorage.getItem("token");
+
+if (!token) {
+    router.push("/");
+}
 </script>
 
 <template>

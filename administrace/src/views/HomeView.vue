@@ -6,15 +6,7 @@ import textEdit from '../components/textEdit.vue'
 
 <template>
   <main class="flexC"> 
-    <form action="">
-      <h3>Nový článek</h3>
-      <section class="flexC">
-        <label for="nadpis">Nadpis článku</label>
-        <input type="text" class="input" name="nadpis" id="">
-        <textEdit></textEdit>
-      </section>
-      
-    </form>
+
   </main>
 </template>
 
