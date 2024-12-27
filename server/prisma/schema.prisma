@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model articles {
+  id      Int       @id @default(autoincrement())
+  year_id Int
+  header  String    @db.Text
+  content String?   @db.Text
+  dayDate DateTime? @db.DateTime(0)
+  turnus  turnus    @relation(fields: [year_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "articles_ibfk_1")
+  photos  photos[]
+
+  @@index([year_id], map: "year_id")
+}
+
+model files {
+  id       Int    @id @default(autoincrement())
+  fileName String @db.Text
+  filePath String @db.Text
+}
+
+model messages {
+  id         Int      @id @default(autoincrement())
+  childName  String   @db.Text
+  postedDate DateTime @db.DateTime(0)
+  content    String   @db.Text
+}
+
+model news {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  news_date DateTime @db.DateTime(0)
+}
+
+model photos {
+  id         Int      @id @default(autoincrement())
+  article_id Int
+  photo_path String   @db.Text
+  articles   articles @relation(fields: [article_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "photos_ibfk_1")
+
+  @@index([article_id], map: "article_id")
+}
+
+model turnus {
+  id         Int        @id @default(autoincrement())
+  location   String     @db.Text
+  turnusYear Int
+  articles   articles[]
+}
+
+model users {
+  id       Int    @id @default(autoincrement())
+  name     String @db.Text
+  passHash String @db.Text
+}

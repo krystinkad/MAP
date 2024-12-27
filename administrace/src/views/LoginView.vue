@@ -15,8 +15,8 @@ if (token) {
 }
 
 const login = async () => {
-    console.log(`http://localhost:5174/login`)
-    await fetch(`http://localhost:5174/login`, {
+    console.log(`http://localhost:5174/auth/login`)
+    await fetch(`${add.address}/auth/login`, {
         headers: {
             "Content-Type": "application/json",
         },
@@ -26,17 +26,16 @@ const login = async () => {
           password: password.value
         })
     }).then(response => {
+        console.log(response)
         if (!response.ok) {
-            console.log(":)")
             return Promise.reject('Login failed with status ' + response.status);
         }
-        console.log(response.status)
         return response.json();
-    })/* .then(( token ) => {
+    }).then(( token ) => {
         localStorage.setItem("token", token.token);
-        router.push("/info");
-    }) */.catch(error => {
-        console.error('Error during login:', error);
+        router.push("/article");
+    }).catch(error => {
+        console.error('Error stink during login:', error);
     }); 
 };
 
