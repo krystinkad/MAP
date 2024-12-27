@@ -6,7 +6,18 @@ import textEdit from '../components/textEdit.vue'
 
 <template>
   <main class="flexC"> 
+    <form action="">
+      <h3>Přidat turnus</h3>
+      <section class="flexC">
+        <label for="year">Rok</label>
+        <input type="number" name="year" id="">
+        <label for="place">Lokace</label>
+        <input type="text" name="place" value="Kořínek" id="">
 
+        <button class="button">Přidat lokaci</button>
+      </section>
+      
+    </form>
   </main>
 </template>
 

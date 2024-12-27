@@ -14,33 +14,30 @@ if (token) {
     router.push("/article");
 }
 
-const login = () => {
-    fetch(`${add.address}/login`, {
+const login = async () => {
+    console.log(`http://localhost:5174/login`)
+    await fetch(`http://localhost:5174/login`, {
         headers: {
             "Content-Type": "application/json",
         },
         method: "POST",
-        mode: "cors",
         body: JSON.stringify({
-            username: username.value,
-            password: password.value
+          username: username.value,
+          password: password.value
         })
-    })
-    .then(response=>{
-        console.log(":((()))")
-    })
-/*     .then(response => {
+    }).then(response => {
         if (!response.ok) {
+            console.log(":)")
             return Promise.reject('Login failed with status ' + response.status);
         }
+        console.log(response.status)
         return response.json();
-    })
-    .then(( token ) => {
+    })/* .then(( token ) => {
         localStorage.setItem("token", token.token);
         router.push("/info");
-    }).catch(error => {
+    }) */.catch(error => {
         console.error('Error during login:', error);
-    }); */
+    }); 
 };
 
 onBeforeMount(() => {
@@ -74,14 +71,14 @@ onBeforeMount(() => {
 
 <template>
   <main>
-    <form action="" class="flexC">
+    <div class="flexC">
       <h1>Přihlaste se</h1>
       <label for="name">Jméno</label>
       <input v-model="username" class="input" type="text" name="" id="">
       <label for="pass">Heslo</label>
       <input v-model="password" class="input" type="password" name="pass" id="">
-      <button class="button" @click="login()">Přihlásit se</button>
-    </form>
+      <button class="button" @click="login">Přihlásit se</button>
+    </div>
   </main>
 </template>
 
@@ -99,7 +96,7 @@ main{
   position: absolute;
   top:0;
 }
-form{
+div{
   width: 40%;
 }
 

@@ -6,16 +6,42 @@ import cors from "cors";
 //import jwt from "jsonwebtoken";
 //import multer from "multer";
 
+
 const app = express();
+//const privateKey = "jijijijihijijijeirxmciormhxširucqěnoiruqos"
+//const { Client } = pkg;
+	
+//připojení na Clientop
+/* const client = new Client({ 
+    host: 'hosting.ssps.cajthaml.eu',
+    port: 3337,
+    user: 'drevikovska_kristyna_64d3f_fxdan',
+    password: 'PEoIk6OeckuqqUMzPizl3spJKXyOWMLN',
+    database: 'drevikovska_kristyna_64d3f_fxdan_db',
+})
+
+client.connect(); */
+//const port = "2000";
+
 app.use(cors({
-    origin: [`http://localhost:5173`]
+    origin: "*",
 }));
 
 app.use(bodyParser.json());
+app.use(express.static("public"))
+
 //přihlášení
-app.get("/login", async(req,res)=>{
-    res.status(201).send(`heh`);
+app.post("/login", async(req,res)=>{
+    const { username, password } = req.body;
+    console.log(username);
+    res.send(":)")
 })
+
+app.get("/negr", async(req,res)=>{
+    console.log("NEGRRRRRR")
+    res.send("NEGR")
+})
+
 app.all("*", (req, res) => {
     res.status(404).send("error :(");
 })
@@ -58,19 +84,7 @@ app.listen(5174, () => {
 
 /* const privateKey = "jijijijihijijijeirxmciormhxširucqěnoiruqos"
  *///const { Client } = pkg;
-//připojení na Client
-/* const client = new Client({ 
-    host: 'hosting.ssps.cajthaml.eu',
-    port: 3337,
-    user: 'drevikovska_kristyna_64d3f_fxdan',
-    password: 'PEoIk6OeckuqqUMzPizl3spJKXyOWMLN',
-    database: 'drevikovska_kristyna_64d3f_fxdan_db',
-})
-client.connect();
-const port = "2000"; */
 
-/* app.use(express.static("public"))
- */
 //generování tokenů
 /* const generateToken = (id) => {
 
