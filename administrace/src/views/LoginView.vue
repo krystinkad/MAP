@@ -7,13 +7,6 @@ const add = serverAddress();
 const username = ref("");
 const password = ref("");
 
-
-const token = localStorage.getItem("token");
-
-if (token) {
-    router.push("/article");
-}
-
 const login = async () => {
     console.log(`http://localhost:5174/auth/login`)
     await fetch(`${add.address}/auth/login`, {

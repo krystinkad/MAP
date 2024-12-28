@@ -4,12 +4,8 @@ import cors from "cors";
 
 //routes
 import authRouter from './routes/auth/auth.js'
-
-//import pkg from "pg";
-//import  bcrypt, { compare, hash }  from 'bcrypt'; //https://www.npmjs.com/package/bcrypt
-//import jwt from "jsonwebtoken";
-//import multer from "multer";
-
+import articlesRouter from './routes/articles/createArticle.js'
+import newsRouter from './routes/news/createNews.js'
 
 const app = express();
 app.use(cors({
@@ -20,6 +16,9 @@ app.use(bodyParser.json());
 app.use(express.static("public"))
 
 app.use('/auth', authRouter)
+app.use('/articles', articlesRouter)
+app.use('/news', newsRouter)
+
 
 app.all("*", (req, res) => {
     res.status(404).send("error :(");

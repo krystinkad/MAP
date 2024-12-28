@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink class="link" to="article"><p>Články</p></RouterLink>
         <RouterLink class="link" to="gallery"><p>Fotky</p></RouterLink>
         <RouterLink class="link" to="downloads"><p>Soubory ke stažení</p></RouterLink>
-        <RouterLink class="link" to="aktuality"><p>Aktuality</p></RouterLink>
+        <RouterLink class="link" to="news"><p>Aktuality</p></RouterLink>
     </v-app-bar>
 </template>
 

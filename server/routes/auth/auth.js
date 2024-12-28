@@ -10,18 +10,10 @@ import jwt from "jsonwebtoken";
 
 export default authRouter;
 
-//přihlášení
-/* authRouter.post("/login", async(req,res)=>{
-    const { username, password } = req.body;
-    console.log(username);
-    console.log(user.name)
-    res.send(":)")
-}) */
 const privateKey = "jijijijihijijijeirxmciormhxširucqěnoiruqos"
 
 authRouter.post("/login", async (req, res) => {
-    const { username } = req.body;
-    const { password } = req.body;
+    const { username,password } = req.body;
     try {
         const userResult = await dbClient.users.findFirst({    //gest user by name
             where: {

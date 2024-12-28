@@ -1,7 +1,7 @@
 <template>
     <ckeditor
         v-if="editor"
-        v-model="data"
+        v-model="editorData"
         :editor="editor"
         :config="config"
     />

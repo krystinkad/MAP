@@ -24,9 +24,9 @@ const router = createRouter({
       component: () => import('../views/GalleryView.vue'),
     },
     {
-      path: '/aktuality',
-      name: 'aktuality',
-      component: () => import('../views/AktualityView.vue'),
+      path: '/news',
+      name: 'news',
+      component: () => import('../views/NewsView.vue'),
     },
   ],
 })
