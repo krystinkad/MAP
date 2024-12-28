@@ -17,7 +17,7 @@ newsRouter.post("/createNews", async(req,res)=>{
             news_date: new Date(news_date)
         }
     })
-    res.status(200)
+    res.status(200).end()
 })
 
 newsRouter.get("/getNews", async(req,res)=>{
@@ -27,10 +27,15 @@ newsRouter.get("/getNews", async(req,res)=>{
 
 newsRouter.delete("/deleteNews", async(req,res)=>{
     const {delete_id} = req.body;
-    await dbClient.news.delete({
-        where:{
-            id: delete_id
-        }
-    })
-    res.status(200)
+    try {
+        await dbClient.news.delete({
+            where:{
+                id: delete_id
+            }
+        })
+
+        res.status(200).end();
+    } catch (error) {
+        res.status(404).end();t
+    }
 })

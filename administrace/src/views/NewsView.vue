@@ -25,17 +25,17 @@ const createNews = async () => {
       news_date: middleEurope.toISOString(),
       content: newsContent.value
     })
-  })    
+  })
   .catch(error => {
     console.error('Error during login:', error);
   });
+  location.reload();
 };
 const newsArray = ref([""]);
 
 const getAllNews = async () => {
   await fetch(`${add.address}/news/getNews`, {
     headers: {
-
     },
     method: "GET"
   })
@@ -47,7 +47,7 @@ const getAllNews = async () => {
       }
     })
 }
-getAllNews()
+
 const deleteNews = async () => {
   event.preventDefault();
   await fetch(`${add.address}/news/deleteNews`, {
@@ -61,7 +61,7 @@ const deleteNews = async () => {
   }).catch(error => {
     console.error('Error ndnwjdnwj during login:', error);
   });
-
+  location.reload();
 };
 
 function getCurrentDatetime() {
@@ -70,6 +70,7 @@ function getCurrentDatetime() {
 }
 
 onBeforeMount(() => {
+  getAllNews()
   const token = localStorage.getItem("token");
   if (!token) {
     router.push("/");

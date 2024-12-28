@@ -25,7 +25,6 @@ authRouter.post("/login", async (req, res) => {
                 passHash: true
             }
         });
-        console.log(userResult)
         if (userResult == null) {   //user doesnt exist
             return res.status(404).json({ error: 'Invalid username or password' });
         }
@@ -33,11 +32,9 @@ authRouter.post("/login", async (req, res) => {
         let passwordMatch = false;
         if (password === userResult.passHash) passwordMatch = true
         if (passwordMatch == true) {
-            console.log(passwordMatch)
             const token = jwt.sign({
                 user: userResult.id
             }, privateKey, { expiresIn: "30d" });
-            console.log(token)
             return res.json(token);
         } else {
             return res.status(404).json({ error: 'Invalid username or password' });
