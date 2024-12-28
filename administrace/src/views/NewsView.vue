@@ -9,24 +9,59 @@ import { serverAddress } from '../stores/address.js'
 const add = serverAddress();
 const newsTime = ref(getCurrentDatetime());
 const newsContent = ref("");
+const deleteValue = ref("");
 
 const createNews = async () => {
-    event.preventDefault();
-    const isoToDate = new Date(newsTime.value);
-    const middleEurope = new Date(isoToDate.getTime() + 60 * 60 * 1000);
+  event.preventDefault();
+  const isoToDate = new Date(newsTime.value);
+  const middleEurope = new Date(isoToDate.getTime() + 60 * 60 * 1000);
 
-     await fetch(`${add.address}/news/createNews`, {
-        headers: {
-            "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          news_date: middleEurope.toISOString(),
-          content: newsContent.value
-        })
-    }).catch(error => {
-        console.error('Error during login:', error);
-    }); 
+  await fetch(`${add.address}/news/createNews`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      news_date: middleEurope.toISOString(),
+      content: newsContent.value
+    })
+  })    
+  .catch(error => {
+    console.error('Error during login:', error);
+  });
+};
+const newsArray = ref([""]);
+
+const getAllNews = async () => {
+  await fetch(`${add.address}/news/getNews`, {
+    headers: {
+
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      newsArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        newsArray.value.push(data[i])
+      }
+    })
+}
+getAllNews()
+const deleteNews = async () => {
+  event.preventDefault();
+  await fetch(`${add.address}/news/deleteNews`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+    body: JSON.stringify({
+      delete_id: deleteValue.value
+    })
+  }).catch(error => {
+    console.error('Error ndnwjdnwj during login:', error);
+  });
+
 };
 
 function getCurrentDatetime() {
@@ -52,7 +87,15 @@ onBeforeMount(() => {
         <input v-model="newsContent" type="text" name="" id="">
         <button class="button" @click="createNews">Přidat aktualitu</button>
       </section>
-
+    </form>
+    <form action="">
+      <h3>Odstranit aktualitu</h3>
+      <section class="flexC">
+        <select v-model="deleteValue" name="" id="options">
+          <option v-for="news in newsArray" :value="news.id">{{ news.content }}</option>
+        </select>
+        <button class="button" @click="deleteNews">Odstranit aktualitu</button>
+      </section>
     </form>
   </main>
 </template>
@@ -76,6 +119,10 @@ form {
 
   input {
     width: min-content;
+  }
+
+  option {
+    color: black;
   }
 }
 </style>

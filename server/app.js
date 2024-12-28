@@ -4,8 +4,8 @@ import cors from "cors";
 
 //routes
 import authRouter from './routes/auth/auth.js'
-import articlesRouter from './routes/articles/createArticle.js'
-import newsRouter from './routes/news/createNews.js'
+import articlesRouter from './routes/articles/articles.js'
+import newsRouter from './routes/news/news.js'
 
 const app = express();
 app.use(cors({
