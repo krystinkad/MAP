@@ -21,7 +21,7 @@ const createNews = async () => {
         },
         method: "POST",
         body: JSON.stringify({
-          news_date: middleEurope.value,
+          news_date: middleEurope.toISOString(),
           content: newsContent.value
         })
     }).catch(error => {

@@ -10,6 +10,7 @@ export default newsRouter;
 
 newsRouter.post("/createNews", async(req,res)=>{
     const {content, news_date} = req.body;
+
     await dbClient.news.create({
         data:{
             content: content,
