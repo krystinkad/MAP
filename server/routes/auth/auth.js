@@ -5,7 +5,7 @@ const authRouter = express.Router();
 import PrismaClient from '@prisma/client';
 
 const dbClient = new PrismaClient.PrismaClient();
-//import bcrypt, { compare, hash }  from 'bcrypt'; //https://www.npmjs.com/package/bcrypt
+import bcrypt, { compare, hash }  from 'bcrypt'; //https://www.npmjs.com/package/bcrypt
 import jwt from "jsonwebtoken";
 
 export default authRouter;
@@ -28,9 +28,7 @@ authRouter.post("/login", async (req, res) => {
         if (userResult == null) {   //user doesnt exist
             return res.status(404).json({ error: 'Invalid username or password' });
         }
-        //const passwordMatch = await bcrypt.compare(password, userResult.password);
-        let passwordMatch = false;
-        if (password === userResult.passHash) passwordMatch = true
+        const passwordMatch = await bcrypt.compare(password, userResult.passHash);
         if (passwordMatch == true) {
             const token = jwt.sign({
                 user: userResult.id

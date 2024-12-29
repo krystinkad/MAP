@@ -6,6 +6,8 @@ import cors from "cors";
 import authRouter from './routes/auth/auth.js'
 import articlesRouter from './routes/articles/articles.js'
 import newsRouter from './routes/news/news.js'
+import settingsRouter from './routes/settings/settings.js'
+
 
 const app = express();
 app.use(cors({
@@ -18,6 +20,7 @@ app.use(express.static("public"))
 app.use('/auth', authRouter)
 app.use('/articles', articlesRouter)
 app.use('/news', newsRouter)
+app.use('/settings', settingsRouter)
 
 
 app.all("*", (req, res) => {
