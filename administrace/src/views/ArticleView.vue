@@ -2,15 +2,18 @@
 import headerBar from '../components/header.vue'
 import textEdit from '../components/textEdit.vue'
 import router from '@/router';
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, ref, watch } from 'vue';
 import { serverAddress } from '../stores/address.js'
 
 const add = serverAddress();
 const header = ref("");
-const editorData = ref("");
+//const editorData = ref("");
 const yearsArray = ref([]);
-const yearValue = ref([]);
+const yearValue = ref(14);
+const articlesArray = ref([]);
+//const articleValue = ref("");
 const day = ref();
+const delete_id = ref();
 
 const getAllYears = async () => {
   await fetch(`${add.address}/articles/getYears`, {
@@ -24,14 +27,27 @@ const getAllYears = async () => {
       for (let i = 0; i < data.length; i++) {
         yearsArray.value.push(data[i])
       }
-      console.log(yearsArray.value)
       yearsArray.value.reverse();
+    })
+}
+const getArticles = async () => {
+  await fetch(`${add.address}/articles/getArticles/${yearValue.value}`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      articlesArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        articlesArray.value.push(data[i])
+      }
+      articlesArray.value.reverse();
     })
 }
 
 const uploadArticle = async () => {
   event.preventDefault();
-  console.log(`http://localhost:5174/articles/uploadArticle`)
   await fetch(`${add.address}/articles/uploadArticle`, {
     headers: {
       "Content-Type": "application/json",
@@ -45,10 +61,30 @@ const uploadArticle = async () => {
   }).catch(error => {
     console.error('Error during login:', error);
   });
+  getArticles()
 };
+
+const deleteArticle = async () => {
+  event.preventDefault();
+  await fetch(`${add.address}/articles/deleteArticle`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+    body: JSON.stringify({
+      delete_id: delete_id.value,
+    })
+  }).catch(error => {
+    console.error('Error during login:', error);
+  });
+  getArticles()
+};
+
+watch(yearValue, () => {getArticles()})
 
 onBeforeMount(() => {
   getAllYears()
+  getArticles()
   const token = localStorage.getItem("token");
   if (!token) {
     router.push("/");
@@ -59,6 +95,13 @@ onBeforeMount(() => {
 
 <template>
   <main class="flexC">
+    <section class="flexR">
+      <label for="year">Upravovat turnus: </label>
+      <select v-model="yearValue" name="year" id="options">
+        <option v-for="year in yearsArray" :value="year.id">{{ year.turnusYear }}</option>
+      </select>
+    </section>
+
     <form action="" id="new">
       <h3>Nový článek</h3>
       <section class="flexC">
@@ -68,46 +111,40 @@ onBeforeMount(() => {
             <input v-model="header" type="text" class="input" name="nadpis" id="">
           </span>
           <span>
-            <label for="year">Turnus</label>
-            <select v-model="yearValue" name="year" id="options">
-              <option v-for="year in yearsArray" :value="year.id">{{ year.turnusYear }}</option>
-            </select>
-          </span>
-          <span>
             <label for="day">Den č.</label>
             <input v-model="day" type="number" class="input day" name="day" id="">
           </span>
         </section>
-        <textEdit v-model="editorData"></textEdit>
+        <textEdit></textEdit>
         <button class="button" @click="uploadArticle">Přidat článek</button>
       </section>
     </form>
     <span class="divider"></span>
 
-    <form action="" id="edit">
+<!--     <form action="" id="edit">
       <h3>Upravit článek</h3>
       <section class="flexC">
-        <label for="select">Vyberte článek k úpravě</label>
-        <select class="input" name="select" id="">
-          <option value="">Clanek1</option>
-          <option value="">Clanke1</option>
-        </select>
+        <label for="article">Vyberte článek k úpravě</label>
+          <select v-model="articleValue" name="article" id="options">
+            <option v-for="article in articlesArray" :value="article.id">{{ article.header }}</option>
+          </select>
         <label for="nadpis">Nadpis článku</label>
         <input type="text" class="input" name="nadpis" id="">
         <textEdit></textEdit>
         <button class="button">Upravit článek</button>
       </section>
-    </form>
+    </form> -->
     <span class="divider"></span>
     <form action="" id="delete">
       <h3>Smazat článek</h3>
       <section class="flexC">
-        <select class="input" name="select" id="">
-          <option value="">Clanek1</option>
-          <option value="">Clanke1</option>
-        </select>
-        <!--VYpsat článek-->
-        <button class="button">Smazat článek</button>
+        <section class="flexR">
+          <label for="article">Článek</label>
+          <select v-model="delete_id" name="article" id="options">
+            <option v-for="article in articlesArray" :value="article.id">{{ article.header }}</option>
+          </select>
+        </section>
+        <button class="button" @click="deleteArticle">Smazat článek</button>
       </section>
     </form>
   </main>
@@ -123,6 +160,8 @@ h3 {
 }
 
 main {
+  margin-top: 50px;
+
   align-items: center;
   justify-content: center;
 }
@@ -130,13 +169,15 @@ main {
 form {
   width: 80%;
 }
-
+.flexR{
+  width: 80%;
+  justify-content:start;
+}
 #new {
-  span{
+  span {
     display: flex;
-    gap:5px;
+    gap: 5px;
   }
-  margin-top: 50px;
 
   label {
     align-self: center;
