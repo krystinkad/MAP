@@ -62,7 +62,8 @@ const uploadArticle = async () => {
   }).catch(error => {
     console.error('Error during login:', error);
   });
-  getArticles()
+  getArticles();
+  editorContent.value=""
 };
 
 const deleteArticle = async () => {

@@ -45,6 +45,7 @@ articlesRouter.post("/uploadArticle", async (req, res) => {
     } catch (error) {
         res.status(404).end();
     }
+    
 })
 
 articlesRouter.delete("/deleteArticle", async(req,res)=>{
