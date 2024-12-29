@@ -1,23 +1,33 @@
 <template>
     <ckeditor
         v-if="editor"
-        v-model="editorData"
+        v-model="localEditorData"
         :editor="editor"
         :config="config"
+        @input="updateValue"
     />
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { Ckeditor, useCKEditorCloud } from '@ckeditor/ckeditor5-vue';
+
+const props = defineProps(['modelValue']);
+const emit = defineEmits(['update:modelValue']);
 
 const cloud = useCKEditorCloud( {
     version: '44.0.0',
     premium: false
 } );
 
-const data = ref( '' );
+const localEditorData = ref(props.modelValue);
+watch(() => props.modelValue, (newValue) => {
+    localEditorData.value = newValue;
+});
 
+const updateValue = (data) => {
+    emit('update:modelValue', localEditorData.value);
+};
 const editor = computed( () => {
     if ( !cloud.data.value ) {
         return null;

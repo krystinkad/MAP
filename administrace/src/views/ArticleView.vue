@@ -7,7 +7,7 @@ import { serverAddress } from '../stores/address.js'
 
 const add = serverAddress();
 const header = ref("");
-//const editorData = ref("");
+const editorContent = ref("");
 const yearsArray = ref([]);
 const yearValue = ref(14);
 const articlesArray = ref([]);
@@ -56,7 +56,8 @@ const uploadArticle = async () => {
     body: JSON.stringify({
       header: header.value,
       year_id: yearValue.value,
-      day: day.value
+      day: day.value,
+      content: editorContent.value
     })
   }).catch(error => {
     console.error('Error during login:', error);
@@ -115,7 +116,7 @@ onBeforeMount(() => {
             <input v-model="day" type="number" class="input day" name="day" id="">
           </span>
         </section>
-        <textEdit></textEdit>
+        <textEdit v-model="editorContent"></textEdit>
         <button class="button" @click="uploadArticle">Přidat článek</button>
       </section>
     </form>

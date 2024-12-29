@@ -31,14 +31,14 @@ articlesRouter.get("/getArticles/:year", async (req, res) => {
 })
 
 articlesRouter.post("/uploadArticle", async (req, res) => {
-    const { header, year_id, day } = req.body;
+    const { header, year_id, day, content } = req.body;
     try {
         await dbClient.articles.create({
             data: {
                 header: header,
                 year_id: year_id,
                 day: day,
-                content: "smrdis"
+                content: content
             }
         })
         res.status(200).end()
