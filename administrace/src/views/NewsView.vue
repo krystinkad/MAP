@@ -10,6 +10,22 @@ const add = serverAddress();
 const newsTime = ref(getCurrentDatetime());
 const newsContent = ref("");
 const deleteValue = ref("");
+const newsArray = ref([""]);
+
+const getAllNews = async () => {
+  await fetch(`${add.address}/news/getNews`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      newsArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        newsArray.value.push(data[i])
+      }
+    })
+}
 
 const createNews = async () => {
   event.preventDefault();
@@ -31,23 +47,7 @@ const createNews = async () => {
   });
   location.reload();
 };
-const newsArray = ref([""]);
-
-const getAllNews = async () => {
-  await fetch(`${add.address}/news/getNews`, {
-    headers: {
-    },
-    method: "GET"
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      newsArray.value = [];
-      for (let i = 0; i < data.length; i++) {
-        newsArray.value.push(data[i])
-      }
-    })
-}
-
+//do budoucna upravit novinky
 const deleteNews = async () => {
   event.preventDefault();
   await fetch(`${add.address}/news/deleteNews`, {

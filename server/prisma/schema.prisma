@@ -8,21 +8,21 @@ datasource db {
 }
 
 model articles {
-  id      Int       @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   year_id Int
-  header  String    @db.Text
-  content String?   @db.Text
-  dayDate DateTime? @db.DateTime(0)
-  turnus  turnus    @relation(fields: [year_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "articles_ibfk_1")
+  header  String   @db.Text
+  content String?  @db.Text
+  day     Int?
+  turnus  turnus   @relation(fields: [year_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "articles_ibfk_1")
   photos  photos[]
 
   @@index([year_id], map: "year_id")
 }
 
 model files {
-  id       Int    @id @default(autoincrement())
-  fileName String @db.Text
-  filePath String @db.Text
+  id          Int    @id @default(autoincrement())
+  displayName String @db.Text
+  filePath    String @db.Text
 }
 
 model messages {

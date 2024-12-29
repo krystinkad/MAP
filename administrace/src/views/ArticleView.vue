@@ -8,33 +8,47 @@ import { serverAddress } from '../stores/address.js'
 const add = serverAddress();
 const header = ref("");
 const editorData = ref("");
+const yearsArray = ref([]);
+const yearValue = ref([]);
+const day = ref();
+
+const getAllYears = async () => {
+  await fetch(`${add.address}/articles/getYears`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      yearsArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        yearsArray.value.push(data[i])
+      }
+      console.log(yearsArray.value)
+      yearsArray.value.reverse();
+    })
+}
+
 const uploadArticle = async () => {
-    event.preventDefault();  
-    console.log(`http://localhost:5174/articles/uploadArticle`)
-    await fetch(`${add.address}/articles/uploadArticle`, {
-        headers: {
-            "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          header: header.value,
-          //editorData: editorData.value
-        })
-    })/* .then(response => {
-        console.log(response)
-        if (!response.ok) {
-            return Promise.reject('Login failed with status ' + response.status);
-        }
-        return response.json();
-    }).then(( token ) => {
-        localStorage.setItem("token", token.token);
-        router.push("/article");
-    }) */.catch(error => {
-        console.error('Error stink during login:', error);
-    }); 
+  event.preventDefault();
+  console.log(`http://localhost:5174/articles/uploadArticle`)
+  await fetch(`${add.address}/articles/uploadArticle`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      header: header.value,
+      year_id: yearValue.value,
+      day: day.value
+    })
+  }).catch(error => {
+    console.error('Error during login:', error);
+  });
 };
 
 onBeforeMount(() => {
+  getAllYears()
   const token = localStorage.getItem("token");
   if (!token) {
     router.push("/");
@@ -48,8 +62,22 @@ onBeforeMount(() => {
     <form action="" id="new">
       <h3>Nový článek</h3>
       <section class="flexC">
-        <label for="nadpis">Nadpis článku</label>
-        <input v-model="header" type="text" class="input" name="nadpis" id="">
+        <section class="flexR">
+          <span>
+            <label for="nadpis">Nadpis článku</label>
+            <input v-model="header" type="text" class="input" name="nadpis" id="">
+          </span>
+          <span>
+            <label for="year">Turnus</label>
+            <select v-model="yearValue" name="year" id="options">
+              <option v-for="year in yearsArray" :value="year.id">{{ year.turnusYear }}</option>
+            </select>
+          </span>
+          <span>
+            <label for="day">Den č.</label>
+            <input v-model="day" type="number" class="input day" name="day" id="">
+          </span>
+        </section>
         <textEdit v-model="editorData"></textEdit>
         <button class="button" @click="uploadArticle">Přidat článek</button>
       </section>
@@ -101,5 +129,21 @@ main {
 
 form {
   width: 80%;
+}
+
+#new {
+  span{
+    display: flex;
+    gap:5px;
+  }
+  margin-top: 50px;
+
+  label {
+    align-self: center;
+  }
+
+  .day {
+    min-width: 30px;
+  }
 }
 </style>
