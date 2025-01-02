@@ -1,6 +1,5 @@
 import multer from 'multer';
 import path from 'path';
-import { PrismaClient } from '@prisma/client';
 import fs from 'fs';
 
 const storage = multer.diskStorage({
@@ -19,6 +18,7 @@ const storage = multer.diskStorage({
             cb(new Error('This file is already uploaded'), false);
         }
         else {
+          req.filename = file.originalname;
           cb(null, file.originalname);
         }
     }
@@ -38,6 +38,5 @@ const fileFilter = (req, file, cb) => {
 
 export const upload = multer({
     storage: storage,
-    // limits: { fileSize: 10 * 1024 * 1024 },
     fileFilter: fileFilter
-})
+  }).array('photos');

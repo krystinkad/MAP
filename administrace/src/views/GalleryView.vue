@@ -3,12 +3,13 @@ import router from '@/router';
 import { onBeforeMount, ref, watch } from 'vue';
 import { serverAddress } from '../stores/address.js'
 
-const yearValue = ref(15);
-const yearsArray = ref([]);
 const add = serverAddress();
-const editorContent = ref("");
+const yearValue = ref(14);
+const yearsArray = ref([]);
 const articlesArray = ref([]);
 const article_id = ref();
+const fileInput = ref([]);
+
 
 const getAllYears = async () => {
   await fetch(`${add.address}/articles/getYears`, {
@@ -43,20 +44,24 @@ const getArticles = async () => {
 
 const uploadPhotos = async () => {
   event.preventDefault();
+  const formData = new FormData();
+
+for (const file of fileInput.value) {
+    formData.append('photos', file);
+}
+
   await fetch(`${add.address}/photos/uploadPhotos`, {
     headers: {
       "Content-Type": "application/json",
     },
     method: "POST",
     body: JSON.stringify({
-      article_id: article_id.value,
+      articleId: article_id.value,
       formData
     })
   }).catch(error => {
     console.error('Error during login:', error);
   });
-  getArticles();
-  editorContent.value = ""
 };
 
 watch(yearValue, () => { getArticles() })
@@ -133,11 +138,7 @@ main {
   width: 80%;
   margin-top: 50px;
 }
-
 section {
   width: 70%;
-}
-
-aside {
 }
 </style>
