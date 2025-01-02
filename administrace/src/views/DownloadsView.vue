@@ -14,7 +14,7 @@ if (!token) {
     <form action="">
       <h3>Nahrát soubor ke stažení</h3>
       <section class="flexC">
-        <label for="nadpis">Název souboru</label>
+        <label for="nadpis">Zobrazovaný název souboru</label>
         <input type="text" class="input" name="nadpis" id="">
         <input type="file" accept=".docx,.pdf" name="" id="">
         <button class="button">Nahrát</button>
@@ -24,8 +24,6 @@ if (!token) {
     <form action="">
       <h3>Odebrat soubor ke stažení</h3>
       <section class="flexC">
-        <label for="nadpis">Název souboru</label>
-        <input type="text" class="input" name="nadpis" id="">
         <input type="file" accept=".docx,.pdf" name="" id="">
         <button class="button">Odebrat</button>
       </section>
