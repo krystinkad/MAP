@@ -11,21 +11,24 @@ const dbClient = new PrismaClient.PrismaClient();
 
 export default photosRouter;
 
-photosRouter.post("/uploadPhotos", getPhotoData, upload, async (req, res) => {
-    const { articleId } = req.body;
+photosRouter.post("/uploadPhotos/:id", getPhotoData, upload.array('photos', 150), async (req, res) => {
+    const { articleId } = req.photoData;
+
+    if (!req.files)
+        return res.status(400).send("No photos were uploaded");
+
+    const fileData = req.files.map((file) => ({
+        photo_path: file.path,
+        article_id: articleId
+    }));
 
     try {
-        const fileData = req.files.map((file) => {
-            return {
-              photo_path: file.path,
-              article_id: articleId
-            }
-        });
         await dbClient.photos.createMany({
             data: fileData,
           });
         res.status(200).end()
     } catch (error) {
+        console.log(error);
         res.status(404).end();
     }
 })

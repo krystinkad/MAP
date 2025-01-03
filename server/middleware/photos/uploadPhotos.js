@@ -4,18 +4,19 @@ import fs from 'fs';
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const { articleId, year, day } = req.photoData;
-        const dest = path.join('uploads', 'photos', year, day);
-        if (!fs.existSync(dest)) {
+        const { year, day } = req.photoData;
+
+        const dest = path.join('uploads', 'photos', year.toString(), day.toString());
+        if (!fs.existsSync(dest)) {
             fs.mkdirSync(dest, { recursive: true });
         }
         cb(null, dest)
     },
     filename: async (req, file, cb) => {
-        const { articleId, year, day } = req.photoData;
+        const { year, day } = req.photoData;
 
-        if (fs.existsSync(path.join('uploads', 'photos', year, day, file.originalname))) {
-            cb(new Error('This file is already uploaded'), false);
+        if (fs.existsSync(path.join('uploads', 'photos', year.toString(), day.toString(), file.originalname))) {
+            return cb(new Error('This file is already uploaded'), false);
         }
         else {
           req.filename = file.originalname;
@@ -39,4 +40,4 @@ const fileFilter = (req, file, cb) => {
 export const upload = multer({
     storage: storage,
     fileFilter: fileFilter
-  }).array('photos');
+  });

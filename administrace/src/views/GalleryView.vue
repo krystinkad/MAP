@@ -46,21 +46,18 @@ const uploadPhotos = async () => {
   event.preventDefault();
   const formData = new FormData();
 
-for (const file of fileInput.value) {
-    formData.append('photos', file);
-}
+  const articleId = article_id.value;
 
-  await fetch(`${add.address}/photos/uploadPhotos`, {
-    headers: {
+  for (const file of fileInput.value.files) {
+      formData.append('photos', file);
+  }
+
+  await fetch(`${add.address}/photos/uploadPhotos/${articleId}`, {
+    /*headers: {
       "Content-Type": "application/json",
-    },
+    },*/
     method: "POST",
-    body: JSON.stringify({
-      articleId: article_id.value,
-      formData
-    })
-  }).catch(error => {
-    console.error('Error during login:', error);
+    body: formData
   });
 };
 
@@ -94,7 +91,7 @@ onBeforeMount(() => {
             <select v-model="article_id" name="article" id="options">
               <option v-for="article in articlesArray" :value="article.id">{{ article.header }}</option>
             </select>
-            <input type="file" multiple accept=".jpg,.png,,jpeg,.gif,.ARW,.CR2" name="galerie" id="">
+            <input type="file" multiple accept=".jpg,.png,,jpeg,.gif,.ARW,.CR2" name="galerie" id="" ref="fileInput">
             <button class="button" @click="uploadPhotos">Nahrát složku do galerie</button>
           </section>
         </form>

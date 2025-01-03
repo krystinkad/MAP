@@ -6,7 +6,10 @@ const prisma = new PrismaClient.PrismaClient();import fs from 'fs';
 
 export const getPhotoData = async (req, res, next) => {
     try{
-      const articleId = Number(req.body.articleId);
+      if (!req.params.id)
+        return res.status(400).send('chybí id článku');
+
+      const articleId = Number(req.params.id);
       if (isNaN(articleId))
         return res.status(400).send('id není validní');
 
