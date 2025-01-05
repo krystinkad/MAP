@@ -10,7 +10,13 @@ const header = ref("");
 const editorContent = ref("");
 
 const articleValue = ref([]);
-const articleData = ref([]);
+const articleData = ref({
+  id: 0,
+  year_id: 0,
+  header: '',
+  content: '',
+  day: 0
+});
 
 const yearsArray = ref([]);
 const yearValue = ref(15);
@@ -57,13 +63,10 @@ const getArticleContent = async () => {
   })
     .then((response) => response.json())
     .then((data) => {
-        articleData.value = []
-        for (let i = 0; i < data.length; i++) {
-        articleData.value.push(data[i])
-      }
+        articleData.value = data
     }) 
     console.log("hhhh")
-    console.log(articleData.value)
+    console.log(articleData.value.id)
 }
 
 
@@ -153,7 +156,7 @@ onBeforeMount(() => {
             <option v-for="article in articlesArray" :value="article.id">{{ article.header }}</option>
           </select>
         <label for="nadpis">Nadpis článku</label>
-        <input type="text" class="input" name="nadpis" id="" :value="articleData.value">
+        <input type="text" class="input" name="nadpis" id="" v-model="articleData.header">
         <textEdit></textEdit>
         <button class="button">Upravit článek</button>
       </section>
