@@ -99,17 +99,17 @@ const editArticle = async () => {
     },
     method: "PATCH",
     body: JSON.stringify({
-      id:articleData.id.value,
-      header: articleData.header.value,
-      year_id: articleData.yearValue.value,
-      day: articleData.day.value,
-      content: articleData.content.value
+      id:articleData.value.id,
+      header: articleData.value.header,
+      year_id: articleData.value.yearValue,
+      day: articleData.value.day,
+      content: articleData.value.content
     })
   }).catch(error => {
     console.error('Error during login:', error);
   });
-  articleData.content.value = ""
-  articleData.header.value = ""
+  articleData.value.content = ""
+  articleData.value.header = ""
   getArticles()
 };
 
