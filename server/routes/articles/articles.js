@@ -44,6 +44,7 @@ articlesRouter.get("/getArticleContent/:article_id", async (req, res) => {
         res.status(404).end();
     }
 })
+
 articlesRouter.post("/uploadArticle", async (req, res) => {
     const { header, year_id, day, content } = req.body;
     try {
@@ -60,6 +61,28 @@ articlesRouter.post("/uploadArticle", async (req, res) => {
         res.status(404).end();
     }
     
+})
+
+articlesRouter.patch("/editArticle", async (req, res) => {
+    const { id, header, year_id, day, content } = req.body;
+    console.log( id, header, year_id, day, content)
+    try {
+        await dbClient.articles.update({
+            where:{
+                id: Number(id)
+            },
+            data: {
+                header: header,
+                year_id: year_id,
+                day: day,
+                content: content
+            }
+        })
+        res.status(200).end()
+    } catch (error) {
+        console.log(error)
+        res.status(404).end();
+    }
 })
 
 articlesRouter.delete("/deleteArticle", async(req,res)=>{

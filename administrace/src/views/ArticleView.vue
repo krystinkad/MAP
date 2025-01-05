@@ -90,6 +90,31 @@ const uploadArticle = async () => {
   editorContent.value=""
 };
 
+const editArticle = async () => {
+  event.preventDefault();
+  console.log(articleData.value)
+  await fetch(`${add.address}/articles/editArticle`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PATCH",
+    body: JSON.stringify({
+      id:articleData.id.value,
+      header: articleData.header.value,
+      year_id: articleData.yearValue.value,
+      day: articleData.day.value,
+      content: articleData.content.value
+    })
+  }).catch(error => {
+    console.error('Error during login:', error);
+  });
+  articleData.content.value = ""
+  articleData.header.value = ""
+  getArticles()
+};
+
+
+
 const deleteArticle = async () => {
   event.preventDefault();
   await fetch(`${add.address}/articles/deleteArticle`, {
@@ -157,8 +182,8 @@ onBeforeMount(() => {
           </select>
         <label for="nadpis">Nadpis článku</label>
         <input type="text" class="input" name="nadpis" id="" v-model="articleData.header">
-        <textEdit></textEdit>
-        <button class="button">Upravit článek</button>
+        <textEdit v-model="articleData.content"></textEdit>
+        <button class="button" @click="editArticle">Upravit článek</button>
       </section>
     </form>
     <span class="divider"></span>
