@@ -122,9 +122,9 @@ onBeforeMount(() => {
           <photosSelect @updatePhotos="getPhotos" :imagePaths="photosArray"></photosSelect>
         </form> 
       </section>
-      <aside>
+<!--       <aside>
         <p>Zobrazení složek</p>
-      </aside>
+      </aside> -->
     </main>
   </div>
 </template>
