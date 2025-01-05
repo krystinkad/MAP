@@ -8,6 +8,10 @@ import { serverAddress } from '../stores/address.js'
 const add = serverAddress();
 const header = ref("");
 const editorContent = ref("");
+
+const articleValue = ref([]);
+const articleData = ref([]);
+
 const yearsArray = ref([]);
 const yearValue = ref(15);
 const articlesArray = ref([]);
@@ -44,6 +48,24 @@ const getArticles = async () => {
       articlesArray.value.reverse();
     })
 }
+const getArticleContent = async () => {
+  console.log(articleValue.value)
+  await fetch(`${add.address}/articles/getArticleContent/${articleValue.value}`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+        articleData.value = []
+        for (let i = 0; i < data.length; i++) {
+        articleData.value.push(data[i])
+      }
+    }) 
+    console.log("hhhh")
+    console.log(articleData.value)
+}
+
 
 const uploadArticle = async () => {
   event.preventDefault();
@@ -82,6 +104,7 @@ const deleteArticle = async () => {
 };
 
 watch(yearValue, () => {getArticles()})
+watch(articleValue, () => {getArticleContent()})
 
 onBeforeMount(() => {
   getAllYears()
@@ -122,7 +145,7 @@ onBeforeMount(() => {
     </form>
     <span class="divider"></span>
 
-<!--     <form action="" id="edit">
+     <form action="" id="edit">
       <h3>Upravit článek</h3>
       <section class="flexC">
         <label for="article">Vyberte článek k úpravě</label>
@@ -130,11 +153,11 @@ onBeforeMount(() => {
             <option v-for="article in articlesArray" :value="article.id">{{ article.header }}</option>
           </select>
         <label for="nadpis">Nadpis článku</label>
-        <input type="text" class="input" name="nadpis" id="">
+        <input type="text" class="input" name="nadpis" id="" :value="articleData.value">
         <textEdit></textEdit>
         <button class="button">Upravit článek</button>
       </section>
-    </form> -->
+    </form>
     <span class="divider"></span>
     <form action="" id="delete">
       <h3>Smazat článek</h3>

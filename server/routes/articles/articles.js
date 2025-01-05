@@ -12,7 +12,7 @@ articlesRouter.get("/getYears", async (req, res) => {
         const yearsArray = await dbClient.turnus.findMany();
         res.status(200).json(yearsArray)
     } catch (error) {
-        res.status(404).end(); 
+        res.status(404).end();  
     }
 })
 
@@ -30,6 +30,20 @@ articlesRouter.get("/getArticles/:year", async (req, res) => {
     }
 })
 
+articlesRouter.get("/getArticleContent/:article_id", async (req, res) => {
+    const article_id = Number(req.params.article_id)
+    try {
+        const articleContent = await dbClient.articles.findFirst({
+            where: {
+                id: article_id
+            }
+        })
+        console.log(articleContent)
+        res.status(200).json(articleContent)
+    } catch (error) {
+        res.status(404).end();
+    }
+})
 articlesRouter.post("/uploadArticle", async (req, res) => {
     const { header, year_id, day, content } = req.body;
     try {
