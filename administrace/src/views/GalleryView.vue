@@ -2,11 +2,13 @@
 import router from '@/router';
 import { onBeforeMount, ref, watch } from 'vue';
 import { serverAddress } from '../stores/address.js'
+import photosSelect from '../components/gallerySelect.vue'
 
 const add = serverAddress();
 const yearValue = ref(14);
 const yearsArray = ref([]);
 const articlesArray = ref([]);
+const photosArray = ref([]);
 const article_id = ref();
 const fileInput = ref([]);
 
@@ -41,6 +43,20 @@ const getArticles = async () => {
       articlesArray.value.reverse();
     })
 }
+const getPhotos = async () => {
+  await fetch(`${add.address}/photos/getPhotos/${article_id.value}`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      photosArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        photosArray.value.push(data[i])
+      }
+    })
+}
 
 const uploadPhotos = async () => {
   event.preventDefault();
@@ -53,15 +69,15 @@ const uploadPhotos = async () => {
   }
 
   await fetch(`${add.address}/photos/uploadPhotos/${articleId}`, {
-    /*headers: {
-      "Content-Type": "application/json",
-    },*/
+
     method: "POST",
     body: formData
   });
+  getPhotos()
 };
 
 watch(yearValue, () => { getArticles() })
+watch(article_id, () => { getPhotos() })
 
 onBeforeMount(() => {
   getAllYears()
@@ -95,17 +111,16 @@ onBeforeMount(() => {
             <button class="button" @click="uploadPhotos">Nahrát složku do galerie</button>
           </section>
         </form>
-<!--         <form action="">
+        <form action="">
           <h3>Odstranit fotky</h3>
           <section class="flexC">
-            <label for="images">Vyberte soubror</label>
-            <select multiple class="input" name="images" id="">
-              <option value="">imdw</option>
-              <option value="dwdwa">dwdaw</option>
+          <label for="article">Článek</label>
+            <select v-model="article_id" name="article" id="options">
+              <option v-for="article in articlesArray" :value="article.id">{{ article.header }}</option>
             </select>
-            <button class="button">Odstranit z galerie</button>
           </section>
-        </form> -->
+          <photosSelect @updatePhotos="getPhotos" :imagePaths="photosArray"></photosSelect>
+        </form> 
       </section>
       <aside>
         <p>Zobrazení složek</p>

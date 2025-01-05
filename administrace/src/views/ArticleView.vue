@@ -11,7 +11,6 @@ const editorContent = ref("");
 const yearsArray = ref([]);
 const yearValue = ref(15);
 const articlesArray = ref([]);
-//const articleValue = ref("");
 const day = ref();
 const delete_id = ref();
 

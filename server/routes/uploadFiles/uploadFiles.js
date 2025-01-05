@@ -15,7 +15,6 @@ export default filesRouter;
 filesRouter.post("/uploadFile/:name", upload.single('file'), async (req, res) => {
     if (!req.file)
         return res.status(400).send("No files were uploaded");
-    console.log(req.params.name)
     const fileData = {
         displayName: req.params.name,
         filePath: req.file.path
@@ -45,7 +44,6 @@ filesRouter.get("/getFiles", async (req, res) => {
 
 filesRouter.delete("/deleteFile", deleteFileFromDisk, async(req,res)=>{
     const {file_id} = req.body;
-    console.log(file_id)
     try {
         await dbClient.files.delete({
             where:{

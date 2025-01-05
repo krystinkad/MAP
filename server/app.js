@@ -26,7 +26,7 @@ app.use('/news', newsRouter)
 app.use('/settings', settingsRouter)
 app.use('/photos', photosRouter)
 app.use('/files', filesRouter)
-
+app.use("/uploads", express.static("./uploads"));
 
 
 app.all("*", (req, res) => {

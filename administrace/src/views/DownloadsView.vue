@@ -25,7 +25,6 @@ const getFiles = async () => {
 }
 
 const uploadFile = async () => {
-  console.log(header.value)
   event.preventDefault();
   const formData = new FormData();
 
@@ -43,8 +42,6 @@ const uploadFile = async () => {
 const deleteFile = async () => {
   event.preventDefault();
 
-  console.log(file_id.value);
-
   await fetch(`${add.address}/files/deleteFile`, {
     headers: {
       "Content-Type": "application/json",
@@ -60,8 +57,8 @@ const deleteFile = async () => {
       for (let i = 0; i < data.length; i++) {
         filesArray.value.push(data[i])
       }
+      getFiles()
     })
-    getFiles()
 }
 
 onBeforeMount(() => {

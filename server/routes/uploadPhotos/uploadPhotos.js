@@ -6,6 +6,7 @@ const photosRouter = express.Router();
 import PrismaClient from '@prisma/client';
 import {upload} from '../../middleware/photos/uploadPhotos.js';
 import {getPhotoData} from '../../middleware/photos/uploadPhotosData.js';
+import {deleteImageFromDisk} from '../../middleware/photos/deleteImages.js';
 
 const dbClient = new PrismaClient.PrismaClient();
 
@@ -30,5 +31,37 @@ photosRouter.post("/uploadPhotos/:id", getPhotoData, upload.array('photos', 150)
     } catch (error) {
         console.log(error);
         res.status(404).end();
+    }
+})
+
+photosRouter.get("/getPhotos/:article", async (req, res) => {
+    const article_id = Number(req.params.article)
+    try {
+        const photosArray = await dbClient.photos.findMany({
+            where: {
+                article_id: article_id
+            }
+        })
+        res.status(200).json(photosArray)
+    } catch (error) {
+        res.status(404).end();
+    }
+})
+
+
+photosRouter.delete("/deleteImages",  deleteImageFromDisk, async(req,res)=>{
+    const { photos } = req.body;
+    for (const photo of photos) {
+        
+        try {
+            await dbClient.photos.delete({
+                where:{
+                    id: photo.photoId
+                }
+            })
+            res.status(200).end();
+        } catch (error) {
+            res.status(404).end();
+        }
     }
 })
