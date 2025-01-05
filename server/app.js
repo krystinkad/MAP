@@ -30,7 +30,7 @@ app.use('/files', filesRouter)
 
 
 app.all("*", (req, res) => {
-    res.status(404).send("error :(");
+    res.status(404).send("error :((");
 })
 
 app.listen(5174, () => {

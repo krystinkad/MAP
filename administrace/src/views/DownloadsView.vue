@@ -25,6 +25,7 @@ const getFiles = async () => {
 }
 
 const uploadFile = async () => {
+  console.log(header.value)
   event.preventDefault();
   const formData = new FormData();
 
@@ -78,7 +79,7 @@ onBeforeMount(() => {
       <h3>Nahrát soubor ke stažení</h3>
       <section class="flexC">
         <label for="nadpis">Zobrazovaný název souboru</label>
-        <input type="text" class="input" name="nadpis" :value="header">
+        <input type="text" class="input" name="nadpis" v-model="header">
         <input type="file" accept=".docx,.pdf" name="" id="" ref="fileInput">
         <button class="button" @click="uploadFile">Nahrát</button>
       </section>
