@@ -1,18 +1,18 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-
+import ShortUniqueId from 'short-unique-id';
+const uid = new ShortUniqueId({ length: 10 });
+ 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const dest = path.join('uploads', 'files');
         cb(null, dest)
     },
     filename: async (req, file, cb) => {
-        if (!req.params.name)
-            return res.status(400).send('chybí jméno souboru');
+        const filename = file.originalname + uid.rnd()
 
-        const fileName = req.params.name;
-        cb(null, file.originalname);
+        cb(null, filename);
 
     }
 });

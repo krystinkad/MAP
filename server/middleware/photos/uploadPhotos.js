@@ -1,6 +1,8 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import ShortUniqueId from 'short-unique-id';
+const uid = new ShortUniqueId({ length: 10 });
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,8 +21,8 @@ const storage = multer.diskStorage({
             return cb(new Error('This file is already uploaded'), false);
         }
         else {
-          req.filename = file.originalname;
-          cb(null, file.originalname);
+          req.filename = file.originalname + uid.rnd();
+          cb(null, req.filename);
         }
     }
 });
