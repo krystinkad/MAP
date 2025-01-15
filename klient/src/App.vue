@@ -1,7 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import headerBar from '@/components/header.vue'
-import footerBar from '@/components/footer.vue'
 
 </script>
 
@@ -9,7 +8,7 @@ import footerBar from '@/components/footer.vue'
 
   <headerBar></headerBar>
 
-  <RouterView />
+  <RouterView/>
 </template>
 
 <style scoped lang="scss">

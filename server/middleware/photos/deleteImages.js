@@ -1,6 +1,7 @@
 import PrismaClient from '@prisma/client';
 
-const dbClient = new PrismaClient.PrismaClient();import fs from 'fs';
+const dbClient = new PrismaClient.PrismaClient();
+import fs from 'fs';
 
 export const deleteImageFromDisk = async (req, res, next) => {
     const { photos } = req.body;

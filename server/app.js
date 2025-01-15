@@ -9,6 +9,7 @@ import newsRouter from './routes/news/news.js'
 import settingsRouter from './routes/settings/settings.js'
 import photosRouter from './routes/uploadPhotos/uploadPhotos.js'
 import filesRouter from './routes/uploadFiles/uploadFiles.js'
+import FEfilesRouter from './routes/FEfiles/files.js'
 
 
 
@@ -26,7 +27,11 @@ app.use('/news', newsRouter)
 app.use('/settings', settingsRouter)
 app.use('/photos', photosRouter)
 app.use('/files', filesRouter)
+app.use('/FEfiles', FEfilesRouter)
+
 app.use("/uploads", express.static("./uploads"));
+
+
 
 
 app.all("*", (req, res) => {

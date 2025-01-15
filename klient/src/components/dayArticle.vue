@@ -1,15 +1,17 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+const props = defineProps({
+    articleValue: {
+        type: Object,
+        required: true,
+    },
+});
 </script>
 <template>
   <div class="article">
-    <h1>1. den</h1>
-    <h2>název článku</h2>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis sunt
-      ex, pariatur sapiente doloribus totam perferendis, a maxime quasi quo
-      velit et eum, reprehenderit alias doloremque voluptas. Veniam, atque sunt?
-    </p>
+    <h1 v-if="articleValue.day && articleValue.day!=0">{{ articleValue.day }}. den</h1>
+    <h2>{{articleValue.header}}</h2>
+    <article v-html="articleValue.content"></article>
     <RouterLink class="link button" to="/article">číst dál</RouterLink>
     <span class="divider"></span>
   </div>
@@ -44,7 +46,7 @@ h2 {
   }
 .divider {
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: colors.$green_primary;
   margin: 15px 0 10px 0;
 }

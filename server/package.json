@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "nodemon app.js"
+    "run": "nodemon app.js",
+    "start": "node app"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7",
     "prisma": "^6.1.0",
     "short-unique-id": "^5.2.0"
   }
