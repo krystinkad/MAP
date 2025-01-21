@@ -28,12 +28,10 @@ const getAllYears = async () => {
   if (turnusArray.value.length > 0) {
     selectedTurnus.value = turnusArray.value[0];
   }
-  //console.log(selectedTurnus)
   getArticles()
 }
 
 const getArticles = async () => {
-  //console.log(selectedTurnus.value.id)
   await fetch(`${add.address}/articles/getArticles/${selectedTurnus.value.id}`, {
     headers: {
     },
@@ -47,13 +45,11 @@ const getArticles = async () => {
       }
       articlesArray.value.reverse();
     })
-  //console.log(articlesArray.value)
 }
 
 const changeSelected = (turnus) => {
   selectedTurnus.value = null;
   selectedTurnus.value = turnus;
-  //console.log(selectedTurnus.value)
   getArticles();
 };
 
@@ -76,10 +72,6 @@ onBeforeMount(() => {
       <article v-for="article in articlesArray">
         <dayArticle :articleValue="article"></dayArticle>
       </article>
-      <!--       <span>
-        <p class="button"><i class="fa-solid fa-chevron-left"></i></p>
-        <p class="button"><i class="fa-solid fa-chevron-right"></i></p>
-      </span> -->
     </main>
   </div>
   <footerBar></footerBar>
@@ -102,7 +94,7 @@ onBeforeMount(() => {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     gap: 20px;
     height: 100%;
     line-height: 1.4;

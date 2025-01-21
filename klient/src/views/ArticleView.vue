@@ -45,8 +45,9 @@ getArticles()
   <div class="wrap">
     <aside>
       <section class="" v-for="article in articlesArray">
+        <p :class="selectedArticle.id === article.id ? 'selected' : ''" :style="{ display: article.day != null && article.day != 0 ? 'block' : 'none' }">{{  "den " + article.day + " - "  }}</p>
         <p @click="changeSelected(article)" :key="article.id" :class="selectedArticle.id === article.id ? 'selected' : ''">
-          {{ "den " + article.day + " - " + article.header }} </p>
+          {{article.header }} </p>
       </section>
     </aside>
     <main>
@@ -66,7 +67,8 @@ getArticles()
   flex-direction: row;
   margin-bottom: -80px;
   aside {
-    width: 30vw;
+    min-width: 30vw;
+    width: fit-content;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -78,9 +80,10 @@ getArticles()
 
     section {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      flex-direction: row;
+      flex-wrap: nowrap;
       margin: 0 20px 0 50px;
+      gap:2px;
       p {
         font-size: 1.1em;
         &:hover {
@@ -88,7 +91,7 @@ getArticles()
         }
         @include mixins.responsive(tablet) {
           min-width: 150px;
-          text-align: center;
+          text-align: left;
         }
       }
       .selected {
