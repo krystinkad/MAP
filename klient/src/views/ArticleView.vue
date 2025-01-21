@@ -1,28 +1,56 @@
 <script setup>
+import { serverAddress } from '../stores/address.js'
+import { ref, onBeforeMount, onMounted } from 'vue';
+import fullArticle from '@/components/fullArticle.vue'
 import footerBar from "@/components/footer.vue";
-import fullArticle from "@/components/fullArticle.vue";
+
+
+const add = serverAddress();
+const articlesArray = ref([]);
+const selectedArticle = ref({});
+
+const getArticles = async () => {
+  await fetch(`${add.address}/articles/getArticles/${14}`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      articlesArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        articlesArray.value.push(data[i])
+      }
+      articlesArray.value.reverse();
+    })
+    console.log(articlesArray.value)
+    if (articlesArray.value.length > 0) {
+    selectedArticle.value = articlesArray.value[0];
+  }
+}
+ 
+const changeSelected = (article) => {
+  selectedArticle.value = null;
+  selectedArticle.value = article;
+  console.log(selectedArticle.value)
+};
+ 
+
+onBeforeMount(() => {
+getArticles()
+})
 </script>
 
 <template>
   <div class="wrap">
     <aside>
-      <section>
-        <h4>1. den - název článku</h4>
-        <p>2. den - název článku</p>
-        <p>3. den - název článku</p>
-        <p>4. den - název článku</p>
-        <p>5. den - název článku</p>
-        <p>6. den - název článku</p>
-        <p>7. den - název článku</p>
-        <p>8. den - název článku</p>
-        <p>9. den - název článku</p>
-        <p>10. den - název článku</p>
-        <p>11. den - název článku</p>
-        <p>12. den - název článku</p>
+      <section class="" v-for="article in articlesArray">
+        <p @click="changeSelected(article)" :key="article.id" :class="selectedArticle.id === article.id ? 'selected' : ''">
+          {{ "den " + article.day + " - " + article.header }} </p>
       </section>
     </aside>
     <main>
-      <fullArticle></fullArticle>
+      <fullArticle :articleContent="selectedArticle"></fullArticle>
     </main>
   </div>
   <footerBar></footerBar>
@@ -41,8 +69,10 @@ import fullArticle from "@/components/fullArticle.vue";
     width: 30vw;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap:20px;
     line-height: 1.4;
-    border-right: 3px colors.$green_primary solid;
+    border-right: 2px colors.$green_primary solid;
     padding-bottom: 60px;
     margin-bottom: 150px;
 
@@ -50,7 +80,7 @@ import fullArticle from "@/components/fullArticle.vue";
       display: flex;
       flex-direction: column;
       gap: 20px;
-      margin: 0 20px 0 20px;
+      margin: 0 20px 0 50px;
       p {
         font-size: 1.1em;
         &:hover {
@@ -59,6 +89,20 @@ import fullArticle from "@/components/fullArticle.vue";
         @include mixins.responsive(tablet) {
           min-width: 150px;
           text-align: center;
+        }
+      }
+      .selected {
+        font-family: Luckiest;
+        font-size: 1.2em;
+        color: colors.$green_dark;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        @include mixins.responsive(tablet) {
+          min-width: 130px;
+          margin-top: -5px;
         }
       }
       h4 {

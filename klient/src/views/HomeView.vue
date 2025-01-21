@@ -2,6 +2,9 @@
 import footerBar from "@/components/footer.vue";
 import sponsors from "@/components/sponsors.vue";
 import { ref,onMounted, onUnmounted } from 'vue';
+import { serverAddress } from '../stores/address.js'
+
+const add = serverAddress();
 
 const days = ref(10);
 const hours = ref(10);
@@ -11,14 +14,29 @@ const daysTxt = ref("dní");
 const hoursTxt = ref("hodin");
 const minutesTxt = ref("minut");
 const secondsTxt = ref("seconds");
+const countdownDate = ref( new Date("Jan 29, 2025 15:00:00").getTime());
 
-const countdownDate = new Date("Jan 12, 2025 15:00:00").getTime();
+const newsArray = ref([])
+
+const getDate = async() => {
+  await fetch(`${add.address}/config/getTime`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+        const datum = data[0]
+        countdownDate.value = new Date(datum)
+    })
+    updateCountdown()
+}
 
 let interval;
 
 const updateCountdown = () => {
   const now = new Date().getTime();
-  const distance = countdownDate - now;
+  const distance = countdownDate.value - now;
 
   if (distance < 0) {
     days.value = 0;
@@ -51,8 +69,42 @@ const updateCountdown = () => {
   else secondsTxt.value = "sekund";
 };
 
+const getAllNews = async () => {
+  await fetch(`${add.address}/news/getNews`, {
+    headers: {},
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      newsArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        newsArray.value.push(data[i]);
+      }
+      for (let i = 0; i < newsArray.value.length; i++) {
+        const date = new Date(newsArray.value[i].news_date);
+        newsArray.value[i].news_date = formatDate(date);
+        console.log(newsArray.value[i].news_date);
+      }
+    });
+};
+
+function formatDate(date) {
+  const days = ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"];
+  const months = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
+
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  return `${day}. ${month} ${year}, ${hours}:${minutes}`;
+}
+
+
 onMounted(() => {
-  updateCountdown();
+  getDate();
+  getAllNews()
   interval = setInterval(updateCountdown, 1000);
 });
 
@@ -100,10 +152,10 @@ onUnmounted(() => {
     </div>
     <div class="aktuality">
       <h2>Aktuality</h2>
-      <p>
-        Tady budou nějakým způsobem aktuality, netuším jak, out of ideas, konec
-        hlášení
-      </p>
+      <section class="" v-for="news in newsArray">
+        <p class="b">{{ news.news_date}}</p>
+        <p>{{ news.content }}</p>
+      </section>
     </div>
     <div class="separatorLine">
       <span></span>
@@ -116,6 +168,7 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
+@use "@/assets/imports.scss";
 
 main.homePage {
   display: flex;
@@ -136,16 +189,6 @@ main.homePage {
     h2{
       color: colors.$clr_white;
     }
-/*     h2 {
-      text-align: center;
-      @include mixins.responsive(tablet) {
-        font-size: 2.3em;
-      }
-      @include mixins.responsive(mobile) {
-        font-size: 1.8em;
-        padding-top: 10px;
-      }
-    } */
     .countdownCont {
       display: flex;
       flex-direction: row;
@@ -208,16 +251,16 @@ main.homePage {
     flex-direction: column;
     align-items: center;
     font-family: "Quicksand", sans-serif;
-/*     h2 {
-      color: colors.$green_dark;
-      @include mixins.responsive(tablet) {
-        font-size: 1.6em;
-      }
-      @include mixins.responsive(mobile) {
-        font-size: 1.3em;
-        padding-top: 10px;
-      }
-    } */
+    section{
+      width: 60%;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      gap: 20px;
+      line-height: 1.5em;
+    }
+    h2{
+      padding-top: 50px;
+    }
   }
   .separatorLine {
     display: flex;

@@ -1,25 +1,54 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import { ref, onBeforeMount } from "vue";
+import galleryComp from "@/components/galleryView.vue";
+import { serverAddress } from '../stores/address.js'
+const add = serverAddress();
+//const articleContent = ref({})
+const photosArray = ref([])
+
+const props = defineProps({
+  articleContent: {
+        type: Object,
+        required: true,
+    },
+});
+
+const getPhotos = async () => {
+  console.log(props.articleContent)
+  await fetch(`${add.address}/photos/getPhotos/${props.articleContent.article_id}`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      photosArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        photosArray.value.push(data[i])
+      }
+    })
+    console.log("fotky:" + photosArray.value)
+}
+
+onBeforeMount(() => {
+  getPhotos()
+  console.log(props.articleContent)
+  const token = localStorage.getItem("token");
+  if (!token) {
+    router.push("/");
+  }
+})
 </script>
 <template>
   <div class="article">
-    <h1>název článku</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quae, a
-      itaque porro et ad deleniti tenetur? Porro dolorem nam eveniet expedita
-      explicabo ipsum laborum, incidunt, laboriosam voluptatem, distinctio
-      quidem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-      nulla accusamus quidem. Et, in fugiat, illo aliquid facere sunt libero
-      aperiam dolorum temporibus qui eligendi at quidem cupiditate cumque
-      provident! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-      Molestiae, ad eligendi? Numquam ipsam totam non reprehenderit molestiae!
-      Molestias eius exercitationem, corporis commodi sapiente consectetur quis
-      architecto et modi officia tempora? Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Officiis, sunt quidem. Ratione neque cupiditate dolores
-      sed quas earum delectus soluta architecto distinctio, quidem sunt itaque
-      dolore voluptates doloremque magni a!
-    </p>
-    <section class="gallery">
+    <h1>{{articleContent.header}}</h1>
+    <article class="articleContent" v-html="articleContent.content"></article>
+ 
+    <galleryComp :imagePaths="photosArray"></galleryComp>
+    <!-- <section class="gallery">
+      
       <section class="images">
         <p class="button"><i class="fa-solid fa-chevron-left"></i></p>
 
@@ -36,7 +65,7 @@ import { RouterLink, RouterView } from "vue-router";
         <span class="dot"></span>
         <span class="dot"></span>
       </section>
-    </section>
+    </section> -->
   </div>
 </template>
 <style scoped lang="scss">
@@ -55,6 +84,12 @@ h1 {
   line-height: 1.5;
   letter-spacing: 1.2;
   gap: 20px;
+  .articleContent{
+    p{
+      line-height: 1.5;
+
+    }
+  }
   .gallery {
     width: 100%;
     display: flex;

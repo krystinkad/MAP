@@ -10,8 +10,7 @@ import settingsRouter from './routes/settings/settings.js'
 import photosRouter from './routes/uploadPhotos/uploadPhotos.js'
 import filesRouter from './routes/uploadFiles/uploadFiles.js'
 import FEfilesRouter from './routes/FEfiles/files.js'
-
-
+import configRouter from "./routes/config/config.js";
 
 const app = express();
 app.use(cors({
@@ -28,11 +27,9 @@ app.use('/settings', settingsRouter)
 app.use('/photos', photosRouter)
 app.use('/files', filesRouter)
 app.use('/FEfiles', FEfilesRouter)
+app.use('/config', configRouter)
 
 app.use("/uploads", express.static("./uploads"));
-
-
-
 
 app.all("*", (req, res) => {
     res.status(404).send("error :((");

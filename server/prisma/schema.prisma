@@ -59,3 +59,9 @@ model users {
   name     String @db.Text
   passHash String @db.Text
 }
+
+model config {
+  id    Int    @id @default(autoincrement())
+  key   String @db.Text
+  value String @db.Text
+}

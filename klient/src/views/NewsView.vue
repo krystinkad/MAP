@@ -26,15 +26,15 @@ const getAllYears = async () => {
       turnusArray.value.reverse();
     })
   if (turnusArray.value.length > 0) {
-    selectedTurnus.value = turnusArray.value[0]; // Nastaví první prvek
+    selectedTurnus.value = turnusArray.value[0];
   }
-  console.log(selectedTurnus)
+  //console.log(selectedTurnus)
   getArticles()
 }
 
 const getArticles = async () => {
-  console.log(selectedTurnus.value.id)
-  await fetch(`${add.address}/articles/getArticles/${selectedTurnus.value.id -1}`, {
+  //console.log(selectedTurnus.value.id)
+  await fetch(`${add.address}/articles/getArticles/${selectedTurnus.value.id}`, {
     headers: {
     },
     method: "GET"
@@ -47,8 +47,16 @@ const getArticles = async () => {
       }
       articlesArray.value.reverse();
     })
-    console.log(articlesArray.value)
+  //console.log(articlesArray.value)
 }
+
+const changeSelected = (turnus) => {
+  selectedTurnus.value = null;
+  selectedTurnus.value = turnus;
+  //console.log(selectedTurnus.value)
+  getArticles();
+};
+
 
 onBeforeMount(() => {
   getAllYears();
@@ -60,29 +68,15 @@ onBeforeMount(() => {
   <div class="wrap">
     <aside>
       <section class="flexC" v-for="turnus in turnusArray">
-        <p :class="selectedTurnus.id === turnus.id ? 'selected' : ''"> {{ turnus.location + " " + turnus.turnusYear }} </p>
-        <!--         <h4>Kořínek 2024</h4>
-        <p>Kořínek 2023</p>
-        <p>Kořínek 2022</p>
-        <p>Vránov 2021</p>
-        <p>Vránov 2020</p>
-        <p>Vránov 2019</p>
-        <p>Vránov 2018</p>
-        <p>Vránov 2017</p>
-        <p>Vránov 2016</p>
-        <p>Vránov 2015</p>
-        <p>Kořen 2014</p>
-        <p>Kořen 2013</p>
-        <p>Kořen 2012</p>
-        <p>Kořen 2011</p>
-        <p>Kořen 2010</p> -->
+        <p @click="changeSelected(turnus)" :key="turnus.id" :class="selectedTurnus.id === turnus.id ? 'selected' : ''">
+          {{ turnus.location + " " + turnus.turnusYear }} </p>
       </section>
     </aside>
     <main>
       <article v-for="article in articlesArray">
         <dayArticle :articleValue="article"></dayArticle>
       </article>
-<!--       <span>
+      <!--       <span>
         <p class="button"><i class="fa-solid fa-chevron-left"></i></p>
         <p class="button"><i class="fa-solid fa-chevron-right"></i></p>
       </span> -->
@@ -115,6 +109,7 @@ onBeforeMount(() => {
     border-right: 2px colors.$green_primary solid;
     margin-bottom: 120px;
     margin-right: 50px;
+
     section {
       display: flex;
       flex-direction: column;
@@ -135,8 +130,9 @@ onBeforeMount(() => {
 
       .selected {
         font-family: Luckiest;
-        font-size:1.2em;
+        font-size: 1.2em;
         color: colors.$green_dark;
+
         &:hover {
           cursor: pointer;
         }
