@@ -1,36 +1,52 @@
 <script setup>
+import { text } from "@fortawesome/fontawesome-svg-core";
 import { RouterLink, RouterView } from "vue-router";
+const props = defineProps({
+  childName: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true
+  },
+  messageTime: {
+    type: String,
+    required: true
+  }
+});
 </script>
 
 <template>
-  <div class="wrap">
-    <article class="vzkaz">
-      <span class="green">
-        <p>p.Nemethová,p.Gogolová a všich </p>
-        <p>15.07.2024 16:04:43</p>
-      </span>
-      <p>
-        Moc děkujeme za opět krásně zorganizovaný tábor,každý rok jinakzaměřený
-        a vždy jedinečný.Strava,vedoucí a zázemí vynikající.Naši kluci se vrací
-        každý rok nadšeni.Držíme palce do dalších ročníků bohužel jižbez
-        nás,kluci jsou již příští rok staří,ale mají na co
-        vzpomínat. Děkujeme Heřman Tomáš
-      </p>
-    </article>
-  </div>
+  <article class="vzkaz">
+    <span class="green">
+      <p>{{ childName }} </p>
+      <p>{{ messageTime }}</p>
+    </span>
+    <p class="content">
+      {{ content }}
+    </p>
+  </article>
 </template>
 <style lang="scss" scoped>
 @use "@/assets/colors.scss" as colors;
+
 .vzkaz {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: colors.$clr_white;
-    padding: 10px;
-    border: 3px solid colors.$green_primary;
-    border-radius: 15px;
-    gap: 20px;
-    line-height: 1.2;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  background-color: colors.$clr_white;
+  padding: 10px;
+  border: 3px solid colors.$green_primary;
+  border-radius: 15px;
+  gap: 20px;
+  line-height: 1.5;
+  break-inside: avoid;
+  margin-bottom: 20px;
+  .content{
+    hyphens: auto;
+  }
 }
 </style>
-

@@ -11,6 +11,7 @@ import photosRouter from './routes/uploadPhotos/uploadPhotos.js'
 import filesRouter from './routes/uploadFiles/uploadFiles.js'
 import FEfilesRouter from './routes/FEfiles/files.js'
 import configRouter from "./routes/config/config.js";
+import messagesRouter from "./routes/messages/messages.js";
 
 const app = express();
 app.use(cors({
@@ -28,6 +29,8 @@ app.use('/photos', photosRouter)
 app.use('/files', filesRouter)
 app.use('/FEfiles', FEfilesRouter)
 app.use('/config', configRouter)
+app.use('/messages', messagesRouter)
+
 
 app.use("/uploads", express.static("./uploads"));
 

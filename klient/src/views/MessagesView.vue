@@ -1,7 +1,76 @@
 <script setup>
 import footerBar from "@/components/footer.vue";
 import note from "@/components/note.vue";
-</script>
+import { ref,onMounted, onUnmounted } from 'vue';
+import { serverAddress } from '../stores/address.js'
+
+const add = serverAddress();
+const messagesArray = ref([])
+
+const childName = ref("");
+const messageContent = ref("")
+
+const getMessages = async() => {
+  await fetch(`${add.address}/messages/getMessages`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      for (let i = 0; i < data.length; i++) {
+
+        messagesArray.value.push(data[i]);
+        
+        const date = new Date(messagesArray.value[i].postedDate);
+        messagesArray.value[i].postedDate = formatDate(date);
+      }
+    })
+    messagesArray.value.reverse()
+}
+
+function formatDate(date) {
+  const day = date.getDate();
+  const month = (date.getMonth() + 1);
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
+}
+
+
+const clearMessage = () =>{
+  messageContent.value = ""
+  childName.value = ""
+}
+
+const sendMessage = async() =>{
+  event.preventDefault()
+  await fetch(`${add.address}/messages/sendMessage`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body:JSON.stringify({
+      childName: childName.value,
+      messageContent: messageContent.value,
+    })
+  }).catch(error => {
+    console.error('Error during sending message:', error);
+  });
+  getMessages()
+  childName.value=""
+  messageContent.value=""
+  location.reload();
+}
+
+onMounted(() => {
+  getMessages()
+});
+
+onUnmounted(() => {
+});</script>
 
 <template>
   <main>
@@ -22,9 +91,10 @@ import note from "@/components/note.vue";
         <form action="">
           <span>
             <label for="jmeni">Jméno a příjmení dítěte</label>
-            <input type="text" name="jmeno" id="" />
+            <input type="text" name="jmeno" id="" v-model="childName"/>
           </span>
           <textarea
+            v-model="messageContent"
             placeholder="Zde napište vzkaz..."
             name=""
             id=""
@@ -32,8 +102,8 @@ import note from "@/components/note.vue";
             rows="5"
           ></textarea>
           <span class="buttons"
-            ><button class="storno">storno</button
-            ><button class="send">odeslat</button></span
+            ><button class="storno" @click="clearMessage">storno</button
+            ><button class="send" @click="sendMessage">odeslat</button></span
           >
         </form>
       </article>
@@ -62,8 +132,8 @@ import note from "@/components/note.vue";
     <img class="wave" src="@/assets/header_wave.svg" alt="" />
 
     <section class="vzkazy">
-      <note></note> <note></note>
-      <note></note>
+        <note v-for="message in messagesArray" :childName="message.childName" :content="message.content" :messageTime="message.postedDate">
+        </note>
     </section>
   </main>
   <footerBar></footerBar>
@@ -85,6 +155,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding-bottom: 60px;
   margin-bottom: -30px;
   h1 {
@@ -171,18 +242,19 @@ main {
   }
   section.vzkazy {
     margin: 70px;
-    display: grid;
-    gap: 20px;
     width: 90%;
-    grid-template-columns: 1fr 1fr 1fr;
+    column-count: 3;
+    column-gap: 20px; 
+    row-gap: 20px;
     @include mixins.responsive(1000px) {
-      grid-template-columns: 1fr 1fr;
+      column-count: 2;
       column-gap: 20px;
     }
     @include mixins.responsive(555px) {
-      grid-template-columns: 1fr;
+      column-count: 1;
       gap: 30px;
     }
+
   }
 }
 footerBar {

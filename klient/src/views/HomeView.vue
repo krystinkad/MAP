@@ -89,7 +89,6 @@ const getAllNews = async () => {
 };
 
 function formatDate(date) {
-  const days = ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"];
   const months = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
 
   const day = date.getDate();
