@@ -23,7 +23,6 @@ const getArticles = async () => {
       }
       articlesArray.value.reverse();
     })
-    console.log(articlesArray.value)
     if (articlesArray.value.length > 0) {
     selectedArticle.value = articlesArray.value[0];
   }

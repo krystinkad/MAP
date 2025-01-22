@@ -1,25 +1,46 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onBeforeMount, onMounted } from 'vue';
 import { serverAddress } from '../stores/address.js'
 
 const add = serverAddress();
 const props = defineProps({
-    imagePaths: {
-        type: Array,
+    articleValue: {
+        type: Object,
         required: true,
     },
 });
-console.log("path" + props.imagePaths)
-</script>
+
+const photosArray = ref([])
+
+const getPhotos = async () => {
+    console.log(props.articleValue.id)
+     await fetch(`${add.address}/photos/getPhotos/${props.articleValue.id}`, {
+    headers: {
+    },
+    method: "GET"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      photosArray.value = [];
+      for (let i = 0; i < data.length; i++) {
+        photosArray.value.push(data[i])
+      }
+    })
+    console.log(photosArray.value)
+}
+
+
+onMounted(() => {
+  getPhotos()
+  console.log(props.articleValue)
+
+})</script>
 <template>
     <div class="container flexR">
-        <section v-for="imagePath in props.imagePaths">
-            <p>{{ imagePath }}</p>
-
+        <section class="select">
+            <img v-for="image in photosArray" class="image"  :src="`${add.address}/${image.photo_path}`" alt="">
         </section>
-        <p>{{ props.imagePaths }}</p>
-<!--         <img class="image" v-for="imagePath in imagePaths"
-            :src="`${add.address}/${imagePath.photo_path}`"> -->
     </div>
 </template>
 
@@ -36,13 +57,10 @@ console.log("path" + props.imagePaths)
     section.select {
         width: 90%;
         padding: 20px;
-        background-color: rgb(240, 240, 240);
         border-radius: 30px;
-        border: solid 1px colors.$green_primary;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
-        transition: 0.1s;
         align-items: center;
 
         img.image {
@@ -51,23 +69,8 @@ console.log("path" + props.imagePaths)
             background-position: center;
             width: 100%;
             height: auto;
-            opacity: 0.75;
-            transition: 0.3s;
             margin: 2px;
             border-radius: 10px;
-
-            &:hover {
-                cursor: pointer;
-                opacity: 1;
-                transition: 0.3s;
-            }
-
-            &.active {
-                border: 2px solid colors.$green_primary;
-                opacity: 1;
-                transition: 0.3s;
-                margin: 0;
-            }
         }
     }
 }

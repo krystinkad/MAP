@@ -4,8 +4,6 @@ import { ref, onBeforeMount } from "vue";
 import galleryComp from "@/components/galleryView.vue";
 import { serverAddress } from '../stores/address.js'
 const add = serverAddress();
-//const articleContent = ref({})
-const photosArray = ref([])
 
 const props = defineProps({
   articleContent: {
@@ -14,26 +12,7 @@ const props = defineProps({
     },
 });
 
-const getPhotos = async () => {
-  console.log(props.articleContent)
-  await fetch(`${add.address}/photos/getPhotos/${props.articleContent.article_id}`, {
-    headers: {
-    },
-    method: "GET"
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-      photosArray.value = [];
-      for (let i = 0; i < data.length; i++) {
-        photosArray.value.push(data[i])
-      }
-    })
-    console.log("fotky:" + photosArray.value)
-}
-
 onBeforeMount(() => {
-  getPhotos()
   console.log(props.articleContent)
   const token = localStorage.getItem("token");
   if (!token) {
@@ -46,7 +25,7 @@ onBeforeMount(() => {
     <h1>{{articleContent.header}}</h1>
     <article class="articleContent" v-html="articleContent.content"></article>
  
-    <galleryComp :imagePaths="photosArray"></galleryComp>
+    <galleryComp :articleValue="articleContent"></galleryComp>
     <!-- <section class="gallery">
       
       <section class="images">
