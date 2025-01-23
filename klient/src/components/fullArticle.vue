@@ -12,20 +12,13 @@ const props = defineProps({
     },
 });
 
-onBeforeMount(() => {
-  console.log(props.articleContent)
-  const token = localStorage.getItem("token");
-  if (!token) {
-    router.push("/");
-  }
-})
 </script>
 <template>
   <div class="article">
     <h1>{{articleContent.header}}</h1>
-    <article class="articleContent" v-html="articleContent.content"></article>
- 
-    <galleryComp :articleValue="articleContent"></galleryComp>
+    <article class="articleContent" v-html="props.articleContent.content"></article>
+ <p>{{ props.articleContent }}</p>
+    <galleryComp :articleValue="props.articleContent"></galleryComp>
     <!-- <section class="gallery">
       
       <section class="images">

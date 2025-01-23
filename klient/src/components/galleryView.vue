@@ -13,7 +13,7 @@ const props = defineProps({
 const photosArray = ref([])
 
 const getPhotos = async () => {
-    console.log(props.articleValue.id)
+    console.log(props.articleValue)
      await fetch(`${add.address}/photos/getPhotos/${props.articleValue.id}`, {
     headers: {
     },
@@ -21,21 +21,19 @@ const getPhotos = async () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       photosArray.value = [];
+      if(data.length > 0){
       for (let i = 0; i < data.length; i++) {
         photosArray.value.push(data[i])
-      }
+      }}
     })
-    console.log(photosArray.value)
 }
 
 
 onMounted(() => {
   getPhotos()
-  console.log(props.articleValue)
-
-})</script>
+})
+</script>
 <template>
     <div class="container flexR">
         <section class="select">

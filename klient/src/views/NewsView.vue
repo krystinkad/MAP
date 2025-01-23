@@ -89,7 +89,7 @@ onBeforeMount(() => {
   margin-bottom: -80px;
 
   aside {
-    min-width: 15vw;
+    min-width: 20vw;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -132,31 +132,49 @@ onBeforeMount(() => {
         @include mixins.responsive(tablet) {
           min-width: 130px;
           margin-top: -5px;
+          align-items: center;
         }
       }
 
       @include mixins.responsive(tablet) {
         flex-direction: row;
+        align-items: center;
         gap: 10px;
         margin: 10px 0 10px 0;
       }
     }
 
-    @include mixins.responsive(tablet) {
+    @include mixins.responsive(800px) {
       border-bottom: 2px colors.$green_primary solid;
       border-right: none;
-      width: 90%;
       overflow: scroll;
       justify-content: start;
       padding-bottom: 20px;
+      width: 80%;
+      align-items: center;
       align-self: center;
+      margin: 0;
+    }
+    @include mixins.responsive(mobile) {
+      border-bottom: 2px colors.$green_primary solid;
+      border-right: none;
+      overflow: scroll;
+      justify-content: start;
+      padding-bottom: 20px;
+      width: 100%;
+      align-items: center;
+      align-self: center;
+      margin: 0;
+      font-size: 0.9em;
+      padding: 0;
+      margin: 0;
     }
   }
 
   main {
     display: flex;
     flex-direction: column;
-    margin: 0 20px 0 20px;
+    margin: 0 60px 0 20px;
     gap: 40px;
     width: 80%;
     padding-bottom: 250px;
@@ -181,15 +199,17 @@ onBeforeMount(() => {
       }
     }
 
-    @include mixins.responsive(tablet) {
-      width: 90%;
+    @include mixins.responsive(800px) {
       padding-top: 60px;
       align-self: center;
+      align-items: center;
+      justify-content: center;
       padding-bottom: 100px;
+      margin: 0;
     }
   }
 
-  @include mixins.responsive(tablet) {
+  @include mixins.responsive(800px) {
     flex-direction: column;
     padding-top: 40px;
   }

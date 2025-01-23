@@ -83,7 +83,6 @@ const getAllNews = async () => {
       for (let i = 0; i < newsArray.value.length; i++) {
         const date = new Date(newsArray.value[i].news_date);
         newsArray.value[i].news_date = formatDate(date);
-        console.log(newsArray.value[i].news_date);
       }
     });
 };
@@ -249,13 +248,16 @@ main.homePage {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     font-family: "Quicksand", sans-serif;
     section{
-      width: 60%;
+      width: fit-content;
       display: grid;
-      grid-template-columns: 1fr 4fr;
-      gap: 20px;
-      line-height: 1.5em;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      line-height: 2em;
+      @include mixins.responsive(1100px) {
+    }
     }
     h2{
       padding-top: 50px;

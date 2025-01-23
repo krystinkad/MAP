@@ -19,6 +19,7 @@ const props = defineProps({
 </template>
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
+@use "@/assets/mixins.scss" as mixins;
 
 button {
   font-family: "Luckiest";
@@ -37,9 +38,13 @@ h2 {
   display: flex;
   flex-direction: column;
   align-self: center;
-  width: 80%;
+  width: 100%;
   line-height: 1.3;
   letter-spacing: 1.2;
+  @include mixins.responsive(mobile) {
+width: 80%;
+align-self: center;
+    }
 }
 
 .button {
