@@ -17,7 +17,7 @@ const props = defineProps({
   <div class="article">
     <h1>{{articleContent.header}}</h1>
     <article class="articleContent" v-html="props.articleContent.content"></article>
- <p>{{ props.articleContent }}</p>
+ <!-- <p>{{ props.articleContent }}</p> -->
     <galleryComp :articleValue="props.articleContent"></galleryComp>
     <!-- <section class="gallery">
       

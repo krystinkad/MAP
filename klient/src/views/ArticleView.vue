@@ -1,16 +1,22 @@
 <script setup>
 import { serverAddress } from '../stores/address.js'
-import { ref, onBeforeMount, onMounted } from 'vue';
+import { ref, onBeforeMount, onMounted, computed } from 'vue';
 import fullArticle from '@/components/fullArticle.vue'
 import footerBar from "@/components/footer.vue";
+import { useRouter, useRoute } from 'vue-router'
 
 
 const add = serverAddress();
 const articlesArray = ref([]);
 const selectedArticle = ref({});
 
+const route = useRoute();
+const yearID = computed(() => route.params.id);
+const articleID = computed(() => route.params.articleID);
+
+
 const getArticles = async () => {
-  await fetch(`${add.address}/articles/getArticles/${14}`, {
+  await fetch(`${add.address}/articles/getArticles/${yearID.value}`, {
     headers: {
     },
     method: "GET"
@@ -24,7 +30,11 @@ const getArticles = async () => {
       articlesArray.value.reverse();
     })
     if (articlesArray.value.length > 0) {
-    selectedArticle.value = articlesArray.value[0];
+      console.log(articlesArray.value)
+      console.log(articleID.value)
+    selectedArticle.value = articlesArray.value.find(article => article.id == articleID);
+
+    console.log(articlesArray.value)
   }
 }
  
@@ -49,7 +59,7 @@ getArticles()
           {{article.header }} </p>
       </section>
     </aside>
-    <main>
+    <main v-if="selectedArticle.id != undefined" :key="selectedArticle">
       <fullArticle :articleContent="selectedArticle"></fullArticle>
     </main>
   </div>
@@ -69,7 +79,6 @@ getArticles()
     min-width: 30vw;
     width: fit-content;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     gap:20px;
     line-height: 1.4;

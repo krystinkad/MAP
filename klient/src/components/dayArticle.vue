@@ -13,7 +13,7 @@ const props = defineProps({
     <h1 v-if="articleValue.day && articleValue.day != 0">{{ articleValue.day }}. den</h1>
     <h2>{{ articleValue.header }}</h2>
     <article v-html="articleValue.content"></article>
-    <RouterLink class="link button" to="/article">číst dál</RouterLink>
+    <RouterLink class="link button" :to="'/article/'+ articleValue.year_id + '/' + articleValue.id" >číst dál</RouterLink>
     <span class="divider"></span>
   </div>
 </template>
