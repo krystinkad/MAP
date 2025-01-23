@@ -30,18 +30,14 @@ const getArticles = async () => {
       articlesArray.value.reverse();
     })
     if (articlesArray.value.length > 0) {
-      console.log(articlesArray.value)
-      console.log(articleID.value)
-    selectedArticle.value = articlesArray.value.find(article => article.id == articleID);
+    selectedArticle.value = articlesArray.value.find(article => article.id == articleID.value);
 
-    console.log(articlesArray.value)
   }
 }
  
 const changeSelected = (article) => {
   selectedArticle.value = null;
   selectedArticle.value = article;
-  console.log(selectedArticle.value)
 };
  
 

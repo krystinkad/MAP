@@ -13,7 +13,6 @@ const props = defineProps({
 const photosArray = ref([])
 
 const getPhotos = async () => {
-    console.log(props.articleValue)
      await fetch(`${add.address}/photos/getPhotos/${props.articleValue.id}`, {
     headers: {
     },
