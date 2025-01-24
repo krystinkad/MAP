@@ -37,6 +37,7 @@ onMounted(() => {
     <div class="container flexR">
         <section class="select">
             <img v-for="image in photosArray" class="image"  :src="`${add.address}/${image.photo_path}`" alt="">
+            <img v-for="image in photosArray" class="image"  :src="`${add.address}/${image.photo_path}`" alt="">
         </section>
     </div>
 </template>
@@ -45,6 +46,7 @@ onMounted(() => {
 @use "@/assets/styles.scss";
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/fonts.scss" as fonts;
+@use "@/assets/mixins.scss" as mixins;
 @use "@/assets/imports.scss";
 
 .container {
@@ -69,6 +71,9 @@ onMounted(() => {
             margin: 2px;
             border-radius: 10px;
         }
+        @include mixins.responsive(mobile) {
+          grid-template-columns: 1fr;
+        }    
     }
 }
 </style>

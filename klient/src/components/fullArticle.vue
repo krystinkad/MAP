@@ -110,7 +110,7 @@ h1 {
         }
       }
       @include mixins.responsive(tablet) {
-        min-width: 130px;
+        min-width: 60px;
         margin-top: -5px;
       }
       @include mixins.responsive(tablet) {

@@ -11,6 +11,7 @@ const articlesArray = ref([]);
 const selectedArticle = ref({});
 
 const route = useRoute();
+const router = useRouter();
 const yearID = computed(() => route.params.id);
 const articleID = computed(() => route.params.articleID);
 
@@ -31,13 +32,19 @@ const getArticles = async () => {
     })
     if (articlesArray.value.length > 0) {
     selectedArticle.value = articlesArray.value.find(article => article.id == articleID.value);
-
+      console.log(articleID.value)
   }
 }
  
 const changeSelected = (article) => {
-  selectedArticle.value = null;
   selectedArticle.value = article;
+  router.push({
+    name: route.name, 
+    params: { 
+      id: yearID.value,
+      articleID: article.id 
+    }
+  });
 };
  
 
@@ -111,7 +118,7 @@ getArticles()
         }
 
         @include mixins.responsive(tablet) {
-          min-width: 130px;
+          min-width: 60px;
           margin-top: -5px;
         }
       }
