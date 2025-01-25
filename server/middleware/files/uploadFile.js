@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, dest)
     },
     filename: async (req, file, cb) => {
-        const filename = file.originalname + uid.rnd()
+        const filename = file.originalname /* + uid.rnd() */
 
         cb(null, filename);
 

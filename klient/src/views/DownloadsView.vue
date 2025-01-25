@@ -4,7 +4,7 @@ import { ref, onBeforeMount, onMounted } from 'vue';
 
 const add = serverAddress();
 const filesArray = ref([]);
-const filePath = ref("");
+//const filePath = ref("");
 
 const getFiles = async () => {
   await fetch(`${add.address}/FEfiles/getFiles`, {
@@ -21,7 +21,7 @@ const getFiles = async () => {
     })
 }
 
-const downloadFile = async (filePath) => {
+/* const downloadFile = async (filePath) => {
   console.log(filePath)
 
   await fetch(`${add.address}/FEfiles/downloadFile/${filePath}`, {
@@ -29,7 +29,30 @@ const downloadFile = async (filePath) => {
     },
     method: "GET"
   })
-}
+} */
+
+const downloadFile = async (filePath, fileName) => {  
+  console.log(`${add.address}/${filePath}`);
+  try {
+    await fetch(`${add.address}/FEfiles/downloadFile/${filePath}`, {
+      headers:{
+      },
+      method:"GET"
+    }).then((response) => response.blob())
+    .then((data) => {
+      if(!data) throw new Error("Chyba při stahování souboru");
+
+      const a = document.createElement("a");
+    a.href = `${add.address}/${filePath}`;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    })
+  } catch (error) {
+    console.error("Chyba při stahování:", error);
+  }
+};
 
 onBeforeMount(() => {
   getFiles();
@@ -41,7 +64,7 @@ onBeforeMount(() => {
     <div class="files">
       <h2>soubory ke stažení</h2>
 
-      <section class="downloads" v-for="file in filesArray" :key="file.filePath" @click="downloadFile(file.filePath)">
+      <section class="downloads" v-for="file in filesArray" :key="file.filePath" @click="downloadFile(file.filePath, file.displayName)">
         <span class="divider"></span>
         <p class="text" ><i class="fa-solid fa-download"></i> {{ file.displayName }}</p>
       </section>
