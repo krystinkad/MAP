@@ -39,3 +39,40 @@ settingsRouter.post("/createUser", async (req, res) => {
         res.status(404).end();
     }
 })
+
+settingsRouter.get("/getTime", async(req,res) =>{
+    try {
+        const time = await dbClient.config.findFirst({
+            where: {
+                key: "startTime"
+            }
+        })
+        res.status(200).json(time).end()
+    } catch (error) {
+        res.status(404).end();
+    }   
+})
+
+settingsRouter.patch("/editTime", async (req, res) => {
+    const { startTime } = req.body; // Destrukturalizace pouze startTime
+
+    try {
+        if (!startTime) {
+            return res.status(400).json({ error: "startTime is required" });
+        }
+
+        await dbClient.config.update({
+            where:{
+                id: 1
+            },
+            data: {
+                value: startTime 
+            }
+        });
+
+        res.status(200).end();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while updating the data" });
+    }
+});
