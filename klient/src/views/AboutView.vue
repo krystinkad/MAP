@@ -7,24 +7,14 @@ import sponsors from "@/components/sponsors.vue";
 <template>
   <div class="about">
     <div class="aboutUs">
-      <h2>Historie</h2>
+      <h2>O nás</h2>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum sed
-        cupiditate, dolorem vel maiores, voluptatibus consectetur saepe dolores
-        omnis est, officiis voluptates! Excepturi ipsa dolores laudantium veniam
-        est dolorum odio. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Tempore laboriosam eum maiores rerum esse non ipsum consectetur,
-        ducimus similique dolorum quod ratione odit unde maxime aliquam
-        quibusdam iusto, temporibus ipsa. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Repellendus autem illum odit eligendi. Dolor libero
-        quasi alias odit, laboriosam, animi fuga dolore repellendus, eveniet
-        error numquam id et saepe esse. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Maxime dolores facilis id maiores optio vel modi a
-        architecto corporis, esse consequatur quaerat ipsa aperiam, itaque
-        soluta iusto adipisci molestiae quas?
+        Už od roku 1998, kdy jsme začínali jako tábor Březová, vytváříme pro děti nezapomenutelné prázdniny. Stovky dětí už s námi prožily léto plné her, dobrodružství a nových kamarádů.
+Každý rok přinášíme nové téma a zajímavé aktivity, díky kterým se děti nejen baví, ale také učí a rozvíjejí. Naším cílem je, aby se na tábor Kořínek děti těšily a odjížděly s úsměvem na tváři.
+Máme za sebou spoustu skvělých let a plánujeme v tom pokračovat. Chceme, aby tábor Kořínek byl místem, kde se děti cítí jako doma a kde si vytvoří vzpomínky na celý život.
       </p>
     </div>
-    <div class="separatorLine">
+    <!-- <div class="separatorLine">
       <span></span>
     </div>
     <div class="aboutUs">
@@ -33,7 +23,7 @@ import sponsors from "@/components/sponsors.vue";
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum sed
         
       </p>
-    </div>
+    </div> -->
     <div class="separatorLine">
       <span></span>
     </div>
@@ -48,11 +38,10 @@ import sponsors from "@/components/sponsors.vue";
 
 .about {
   padding-top: 60px ;
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   .aboutUs {
     width: 60%;
@@ -61,6 +50,7 @@ import sponsors from "@/components/sponsors.vue";
     align-items: center;
     font-family: "Quicksand", sans-serif;
     text-align: center;
+    line-height: 1.5;
     h2 {
       color: colors.$green_dark;
     }

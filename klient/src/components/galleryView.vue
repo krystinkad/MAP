@@ -11,7 +11,7 @@ const props = defineProps({
 });
 
 const photosArray = ref([])
-
+const clickedImage = ref({})
 const getPhotos = async () => {
      await fetch(`${add.address}/photos/getPhotos/${props.articleValue.id}`, {
     headers: {
@@ -26,8 +26,8 @@ const getPhotos = async () => {
         photosArray.value.push(data[i])
       }}
     })
+    clickedImage.value=photosArray.value[0]
 }
-
 
 onMounted(() => {
   getPhotos()
@@ -36,8 +36,7 @@ onMounted(() => {
 <template>
     <div class="container flexR">
         <section class="select">
-            <img v-for="image in photosArray" class="image"  :src="`${add.address}/${image.photo_path}`" alt="">
-            <img v-for="image in photosArray" class="image"  :src="`${add.address}/${image.photo_path}`" alt="">
+            <img v-for="image in photosArray" class="image" :src="`${add.address}/${image.photo_path}`" :clickedImage="clickedImage" alt="">
         </section>
     </div>
 </template>
@@ -50,6 +49,7 @@ onMounted(() => {
 @use "@/assets/imports.scss";
 
 .container {
+  width: 80%;
     margin-top: 20px;
     align-items: baseline;
 

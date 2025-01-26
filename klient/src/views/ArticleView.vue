@@ -4,6 +4,7 @@ import { ref, onBeforeMount, onMounted, computed } from 'vue';
 import fullArticle from '@/components/fullArticle.vue'
 import footerBar from "@/components/footer.vue";
 import { useRouter, useRoute } from 'vue-router'
+import showImage from "@/components/showImage.vue";
 
 
 const add = serverAddress();
@@ -14,7 +15,7 @@ const route = useRoute();
 const router = useRouter();
 const yearID = computed(() => route.params.id);
 const articleID = computed(() => route.params.articleID);
-
+//const isVisible = ref(true)
 
 const getArticles = async () => {
   await fetch(`${add.address}/articles/getArticles/${yearID.value}`, {
@@ -55,7 +56,8 @@ getArticles()
 
 <template>
   <div class="wrap">
-    <aside>
+<!--     <showImage class="fullImage"></showImage>
+ -->    <aside>
       <section class="articleButton" v-for="article in articlesArray">
         <p :class="selectedArticle.id === article.id ? 'selected' : ''" :style="{ display: article.day != null && article.day != 0 ? 'block' : 'none' }" class="day">{{  "den " + article.day + " - "  }}</p>
         <p @click="changeSelected(article)" :key="article.id" :class="selectedArticle.id === article.id ? 'selected' : ''">
@@ -72,12 +74,13 @@ getArticles()
 <style scoped lang="scss">
 @use "@/assets/colors.scss" as colors;
 @use "@/assets/mixins.scss" as mixins;
-
 .wrap {
   padding-top: 60px;
   display: flex;
   flex-direction: row;
   margin-bottom: -80px;
+  overflow: hidden;
+
   aside {
     min-width: 30vw;
     width: fit-content;
@@ -194,5 +197,13 @@ getArticles()
     flex-direction: column;
     padding-top: 40px;
   }
+
+}
+.fullImage{
+  position: fixed;
+  z-index: 6;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>
