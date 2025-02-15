@@ -38,7 +38,7 @@ articlesRouter.get("/getArticleContent/:article_id", async (req, res) => {
                 id: article_id
             }
         })
-        console.log(articleContent)
+        //console.log(articleContent)
         res.status(200).json(articleContent)
     } catch (error) {
         res.status(404).end();
@@ -65,7 +65,7 @@ articlesRouter.post("/uploadArticle", async (req, res) => {
 
 articlesRouter.patch("/editArticle", async (req, res) => {
     const { id, header, year_id, day, content } = req.body;
-    console.log( id, header, year_id, day, content)
+    //console.log( id, header, year_id, day, content)
     try {
         await dbClient.articles.update({
             where:{

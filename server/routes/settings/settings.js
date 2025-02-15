@@ -54,8 +54,7 @@ settingsRouter.get("/getTime", async(req,res) =>{
 })
 
 settingsRouter.patch("/editTime", async (req, res) => {
-    const { startTime } = req.body; // Destrukturalizace pouze startTime
-
+    const { startTime } = req.body; 
     try {
         if (!startTime) {
             return res.status(400).json({ error: "startTime is required" });

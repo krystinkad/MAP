@@ -21,21 +21,9 @@ FEfilesRouter.get("/getFiles", async (req, res) => {
     }
 })
 
-
-/* FEfilesRouter.get("/downloadFile/:filePath", async (req, res) => {
-        const link = req.params.filePath; 
-        const filePath = "//" + link
-        console.log(":)")
-console.log(filePath)
-res.download(filePath, (err) => {
-    if (err) {
-        console.error('Error downloading the file:', err);
-        res.status(500).send('Error downloading the file.');
-    }
-});
-}) */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 FEfilesRouter.get('/downloadFile/:filePath', async (req, res) => {
     try {
       const fileName = req.params.filePath; // Název souboru

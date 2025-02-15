@@ -21,7 +21,5 @@ import headerBar from '@/components/header.vue'
 }
 headerBar{
   z-index: 10;
-}
-
-
+} 
 </style>

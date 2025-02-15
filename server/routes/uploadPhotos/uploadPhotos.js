@@ -51,8 +51,7 @@ photosRouter.get("/getPhotos/:article", async (req, res) => {
 
 photosRouter.delete("/deleteImages",  deleteImageFromDisk, async(req,res)=>{
     const { photos } = req.body;
-    for (const photo of photos) {
-        
+    for (const photo of photos) { 
         try {
             await dbClient.photos.delete({
                 where:{

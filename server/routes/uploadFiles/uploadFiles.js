@@ -34,7 +34,6 @@ filesRouter.post("/uploadFile/:name", upload.single('file'), async (req, res) =>
 filesRouter.get("/getFiles", async (req, res) => {
     try {
         const filesArray = await dbClient.files.findMany({
-
         })
         res.status(200).json(filesArray)
     } catch (error) {
