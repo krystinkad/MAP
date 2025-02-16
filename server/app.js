@@ -14,9 +14,7 @@ import configRouter from "./routes/config/config.js";
 import messagesRouter from "./routes/messages/messages.js";
 
 const app = express();
-app.use(cors({
-    origin: "*",
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(express.static("public"))
@@ -39,5 +37,5 @@ app.all("*", (req, res) => {
 })
 
 app.listen(5174, () => {
-    //console.log(`Server na http://localhost:5174`);
+    console.log(`Server na portu 5174`);
 }) 

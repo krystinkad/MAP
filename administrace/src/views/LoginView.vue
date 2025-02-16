@@ -8,7 +8,6 @@ const username = ref("");
 const password = ref("");
 
 const login = async () => {
-    console.log(`http://localhost:5174/auth/login`)
     await fetch(`${add.address}/auth/login`, {
         headers: {
             "Content-Type": "application/json",

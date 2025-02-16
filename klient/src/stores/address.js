@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const serverAddress = defineStore('serverAddress', {
     state: () => {
         return {
-            address: "http://localhost:5174"
+            address: "https://kristynadrevikovska.cz:5174"
         }
     }
 })
